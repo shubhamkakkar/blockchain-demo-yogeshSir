@@ -1,12 +1,13 @@
-const Block = require("./Block");
+const Block = require("../Block");
 
-const createGenesisBlock = () => new Block(0, Date.now(), 'Genesis Block', '0');
+const createGenesisBlock = () => new Block({index: 0, timestamp: Date.now(), data: 'Genesis Block', prevHash: '0'});
 
 const nextBlock = (lastBlock, data) =>
-    new Block(lastBlock.index + 1, Date.now(), data, lastBlock.thisHash);
+    new Block({index: lastBlock.index + 1, timestamp: Date.now(), data, prevHash: lastBlock.thisHash});
 
 
-const createBlockchain = num => {
+const createBlockchain = () => {
+    const num = 10;
     const blockchain = [createGenesisBlock()];
     let previousBlock = blockchain[0];
 

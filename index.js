@@ -1,4 +1,8 @@
-const automatedBlockchain = require("./automatedBlockchain");
 
-const lengthToCreate = 20;
-automatedBlockchain(lengthToCreate);
+
+const automatedBlockchain = require("./automatedBlockchain/automatedBlockchain");
+const customBlockChain = require("./customBlockchain/customBlockChain");
+
+customBlockChain();
+
+
