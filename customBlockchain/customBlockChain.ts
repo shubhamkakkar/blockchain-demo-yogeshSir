@@ -1,16 +1,18 @@
-const inquirer = require('inquirer');
-const createBlockchain = require('./createBlockchain');
-function customBlockChain() {
+import inquirer from 'inquirer';
+import createBlockchain from './createBlockchain';
 
+
+
+function customBlockChain() {
     const questions = [{
         type: 'input',
         name: 'lengthToCreate',
         message: "What should be the length of blockchain you want to create?",
     }];
 
-    let blockchainData = [];
+    let blockchainData: { data: string }[] = [];
     inquirer.prompt(questions).then(answers => {
-        const lengthToCreate = parseInt(answers['lengthToCreate']);
+        const lengthToCreate: number = parseInt(answers['lengthToCreate']);
         if (lengthToCreate) {
 
             let blockchainDataQuestions = [];
@@ -25,7 +27,6 @@ function customBlockChain() {
                 ]
             }
             inquirer.prompt(blockchainDataQuestions).then(qa => {
-
                 Object.keys(qa).map(keyI => {
                     blockchainData = [
                         ...blockchainData,
@@ -40,9 +41,8 @@ function customBlockChain() {
             console.log("The blockchain must have a length of at least 1");
             return 0;
         }
-        // automatedBlockchain(lengthToCreate);
     });
 
 }
 
-module.exports = customBlockChain;
+export default customBlockChain
