@@ -1,4 +1,4 @@
-import inquirer from 'inquirer';
+const inquirer = require("inquirer");
 import createBlockchain from './createBlockchain';
 
 
@@ -11,11 +11,11 @@ function customBlockChain() {
     }];
 
     let blockchainData: { data: string }[] = [];
-    inquirer.prompt(questions).then(answers => {
+    inquirer.prompt(questions).then((answers: any) => {
         const lengthToCreate: number = parseInt(answers['lengthToCreate']);
         if (lengthToCreate) {
 
-            let blockchainDataQuestions = [];
+            let blockchainDataQuestions: any[] = [];
             for (let i = 0; i < lengthToCreate; i++) {
                 blockchainDataQuestions = [
                     ...blockchainDataQuestions,
@@ -26,7 +26,7 @@ function customBlockChain() {
                     }
                 ]
             }
-            inquirer.prompt(blockchainDataQuestions).then(qa => {
+            inquirer.prompt(blockchainDataQuestions).then((qa: any) => {
                 Object.keys(qa).map(keyI => {
                     blockchainData = [
                         ...blockchainData,

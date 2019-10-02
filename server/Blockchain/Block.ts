@@ -42,7 +42,7 @@ class Block {
         )
     }
 
-    mineBlock(difficulty): string {
+    mineBlock(difficulty: number): string {
         while (this.hash.substring(0, difficulty) !== Array(difficulty + 1).join("0")) {
             this.nounce++;
             this.hash = this.calcHash()

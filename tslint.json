@@ -1,4 +1,16 @@
 {
+    "compilerOptions": {
+        "experimentalDecorators": true,
+        "lib": [
+            "es7",
+            "dom",
+            "esnext.asynciterable"
+        ],
+        "noUnusedLocals": true,
+        "declaration": true,
+        "removeComments": false,
+        "noImplicitUseStrict": true
+    },
     "defaultSeverity": "error",
     "extends": [
         "tslint:recommended"
@@ -7,5 +19,9 @@
     "rules": {
         "no-console": false
     },
-    "rulesDirectory": []
+    "rulesDirectory": [],
+    "exclude": [
+        "node_modules",
+        "dist"
+    ]
 }
