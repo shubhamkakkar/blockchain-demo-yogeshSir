@@ -1,6 +1,5 @@
 const inquirer = require('inquirer');
 const createBlockchain = require('./createBlockchain');
-
 function customBlockChain() {
 
     const questions = [{
@@ -35,8 +34,7 @@ function customBlockChain() {
                         }
                     ];
                 });
-                createBlockchain(lengthToCreate, blockchainData)
-
+                createBlockchain(lengthToCreate, blockchainData);
             });
         } else {
             console.log("The blockchain must have a length of at least 1");
