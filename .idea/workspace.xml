@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="159561b2-b662-4489-a2c4-acf893c8f4f2" name="Default Changelist" comment="" />
+    <list default="true" id="159561b2-b662-4489-a2c4-acf893c8f4f2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/codegen.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql.schema.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/resolvers/resolvers.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/schema/schema.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/generated/graphql.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn-error.log" beforeDir="false" afterPath="$PROJECT_DIR$/yarn-error.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -12,6 +24,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -27,12 +40,14 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="10.15.2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/server" />
       <recent name="$PROJECT_DIR$/automatedBlockchain" />
       <recent name="$PROJECT_DIR$/customBlockchain" />
     </key>
@@ -63,6 +78,8 @@
       <workItem from="1569868203891" duration="60000" />
       <workItem from="1569868431212" duration="8253000" />
       <workItem from="1570023945208" duration="5503000" />
+      <workItem from="1570088993200" duration="598000" />
+      <workItem from="1570176295423" duration="1651000" />
     </task>
     <servers />
   </component>
