@@ -2,16 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="159561b2-b662-4489-a2c4-acf893c8f4f2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/codegen.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphql.schema.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/resolvers/resolvers.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/schema/schema.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/generated/graphql.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resolvers/resolvers.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/schema/test.graphql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/schema/users/user.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegen.yml" beforeDir="false" afterPath="$PROJECT_DIR$/codegen.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphql.schema.json" beforeDir="false" afterPath="$PROJECT_DIR$/graphql.schema.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/Blockchain/Block.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Blockchain/Block.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/Blockchain/automatedBlockchain/automatedBlockchain.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Blockchain/automatedBlockchain/automatedBlockchain.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/Blockchain/customBlockchain/createBlockchain.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Blockchain/customBlockchain/createBlockchain.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/Blockchain/customBlockchain/customBlockChain.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Blockchain/customBlockchain/customBlockChain.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/resolvers/resolvers.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/schema/schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/schema/schema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/generated/graphql.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/graphql.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn-error.log" beforeDir="false" afterPath="$PROJECT_DIR$/yarn-error.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -47,6 +53,8 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/schema/users" />
+      <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/server" />
       <recent name="$PROJECT_DIR$/automatedBlockchain" />
       <recent name="$PROJECT_DIR$/customBlockchain" />
@@ -79,12 +87,21 @@
       <workItem from="1569868431212" duration="8253000" />
       <workItem from="1570023945208" duration="5503000" />
       <workItem from="1570088993200" duration="598000" />
-      <workItem from="1570176295423" duration="1651000" />
+      <workItem from="1570176295423" duration="3215000" />
+      <workItem from="1570179570327" duration="4540000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+    <option name="exactExcludedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/src/schema/users/user.js" />
+      </list>
+    </option>
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.graphql" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

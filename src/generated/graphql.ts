@@ -9,30 +9,16 @@ export type Scalars = {
   Float: number,
 };
 
-
-export type Author = {
-   __typename?: 'Author',
-  id: Scalars['Int'],
-  firstName: Scalars['String'],
-  lastName: Scalars['String'],
-  posts?: Maybe<Array<Maybe<Post>>>,
-};
-
-
-export type AuthorPostsArgs = {
-  findTitle?: Maybe<Scalars['String']>
-};
-
-export type Post = {
-   __typename?: 'Post',
-  id: Scalars['Int'],
-  title: Scalars['String'],
-  author: Author,
-};
-
 export type Query = {
    __typename?: 'Query',
-  posts?: Maybe<Array<Maybe<Post>>>,
+  allUsers?: Maybe<Array<Maybe<User>>>,
+};
+
+export type User = {
+   __typename?: 'User',
+  id: Scalars['String'],
+  name: Scalars['String'],
+  password: Scalars['String'],
 };
 
 
@@ -107,46 +93,32 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
   Query: ResolverTypeWrapper<{}>,
-  Post: ResolverTypeWrapper<Post>,
-  Int: ResolverTypeWrapper<Scalars['Int']>,
+  User: ResolverTypeWrapper<User>,
   String: ResolverTypeWrapper<Scalars['String']>,
-  Author: ResolverTypeWrapper<Author>,
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>,
 };
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
   Query: {},
-  Post: Post,
-  Int: Scalars['Int'],
+  User: User,
   String: Scalars['String'],
-  Author: Author,
   Boolean: Scalars['Boolean'],
 };
 
-export type EntityDirectiveResolver<Result, Parent, ContextType = any, Args = {  }> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
-
-export type AuthorResolvers<ContextType = any, ParentType extends ResolversParentTypes['Author'] = ResolversParentTypes['Author']> = {
-  id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>,
-  firstName?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
-  lastName?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
-  posts?: Resolver<Maybe<Array<Maybe<ResolversTypes['Post']>>>, ParentType, ContextType, AuthorPostsArgs>,
-};
-
-export type PostResolvers<ContextType = any, ParentType extends ResolversParentTypes['Post'] = ResolversParentTypes['Post']> = {
-  id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>,
-  title?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
-  author?: Resolver<ResolversTypes['Author'], ParentType, ContextType>,
-};
-
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  posts?: Resolver<Maybe<Array<Maybe<ResolversTypes['Post']>>>, ParentType, ContextType>,
+  allUsers?: Resolver<Maybe<Array<Maybe<ResolversTypes['User']>>>, ParentType, ContextType>,
+};
+
+export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
+  id?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
+  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
+  password?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
 };
 
 export type Resolvers<ContextType = any> = {
-  Author?: AuthorResolvers<ContextType>,
-  Post?: PostResolvers<ContextType>,
   Query?: QueryResolvers<ContextType>,
+  User?: UserResolvers<ContextType>,
 };
 
 
@@ -155,13 +127,3 @@ export type Resolvers<ContextType = any> = {
  * Use "Resolvers" root object instead. If you wish to get "IResolvers", add "typesPrefix: I" to your config.
 */
 export type IResolvers<ContextType = any> = Resolvers<ContextType>;
-export type DirectiveResolvers<ContextType = any> = {
-  entity?: EntityDirectiveResolver<any, any, ContextType>,
-};
-
-
-/**
-* @deprecated
-* Use "DirectiveResolvers" root object instead. If you wish to get "IDirectiveResolvers", add "typesPrefix: I" to your config.
-*/
-export type IDirectiveResolvers<ContextType = any> = DirectiveResolvers<ContextType>;

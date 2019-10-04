@@ -25,11 +25,9 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import * as cors from 'cors';
-// @ts-ignore
 import { ApolloServer } from 'apollo-server-express';
-import {schema} from './schema/schema';
+import schema from './schema/schema';
 
-const PORT = 8080;
 
 const server = new ApolloServer({schema});
 const app = express();
