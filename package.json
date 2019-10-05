@@ -8,7 +8,8 @@
     "start": "nodemon --exec ts-node  src/index.ts",
     "graphql-codegen": "graphql-codegen",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "ts": "ts-node  src/index.ts"
+    "ts": "ts-node  src/index.ts",
+    "fuser": "fuser -k -n tcp 4000 && yarn ts"
   },
   "keywords": [],
   "author": "",
