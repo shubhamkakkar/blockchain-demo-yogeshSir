@@ -2,6 +2,7 @@ import BlockSchema from '../../models/blocks/block'
 import BlockClass from "../../../Blockchain/Block"
 import { Block as TBlock } from "../../../generated/graphql"
 import { blockHashGenerator } from './sha256'
+import { JWTDecode, JWTVerify } from '../user/jwt'
 export default {
     Query: {
         blocks: async () => await BlockSchema.find()
@@ -9,8 +10,11 @@ export default {
     Mutation: {
         createBlock: (parent: any, { data, token }: { data: string, token: string }) => {
             // must give in token
-            BlockSchema.find()
+            return BlockSchema.find()
                 .then(chain => {
+                    // @ts-ignore
+                    const { email } = JWTVerify(token).email
+                    console.log({ email })
                     const timestamp = Date.now();
                     const nounce = 1;
                     if (chain.length === 0) {
@@ -18,8 +22,7 @@ export default {
                         const index = 0;
                         const prevHash = '0';
 
-                        let block: TBlock = new BlockClass({
-                            // @ts-ignore
+                        let newBlock = new BlockSchema({
                             index,
                             timestamp,
                             data,
@@ -27,11 +30,22 @@ export default {
                             hash: blockHashGenerator({ nounce, index, timestamp, data, prevHash })
                         })
 
-                        console.log({ block })
-
+                        return newBlock.save()
+                            .then(res => res).catch(er => er)
 
                     } else {
-                        // add more to chain
+                        // @ts-ignore
+                        const { index: lastIndex, hash: prevHash }: { index: number, hash: string } = chain.reverse()[0]._doc
+                        const index = lastIndex + 1
+                        let newBlock = new BlockSchema({
+                            index,
+                            timestamp,
+                            data,
+                            prevHash,
+                            hash: blockHashGenerator({ nounce, index, timestamp, data, prevHash })
+                        })
+                        return newBlock.save()
+                            .then(res => res).catch(er => er)
                     }
                 })
                 .catch(er => console.log("er", er))

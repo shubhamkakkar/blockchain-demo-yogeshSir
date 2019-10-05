@@ -13,6 +13,10 @@ const BlockSChema = new Schema({
         type: String,
         required: true
     },
+    createrEmail: {
+        type: String,
+        required: true
+    },
     prevHash: {
         type: String,
         required: true
