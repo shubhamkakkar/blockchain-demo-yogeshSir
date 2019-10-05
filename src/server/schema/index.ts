@@ -1,6 +1,7 @@
 import { gql } from 'apollo-server-express';
 
 import userSchema from './users/user';
+import blockSchema from './blockchain/blockchain'
 
 const linkSchema = gql`
     type Query {
@@ -14,4 +15,4 @@ const linkSchema = gql`
     }
 `;
 
-export default [linkSchema, userSchema];
+export default [linkSchema, userSchema, blockSchema];

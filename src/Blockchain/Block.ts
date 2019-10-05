@@ -19,7 +19,7 @@ export type TBlock = {
 }
 
 
-class Block {
+class BlockClass {
     index: string;
     timestamp: number;
     data: any;
@@ -51,4 +51,4 @@ class Block {
     }
 }
 
-export default Block;
+export default BlockClass;

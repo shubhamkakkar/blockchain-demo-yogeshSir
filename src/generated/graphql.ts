@@ -13,6 +13,15 @@ export type Scalars = {
 };
 
 
+export type Block = {
+   __typename?: 'Block',
+  index: Scalars['Int'],
+  timestamp: Scalars['Int'],
+  data: Scalars['String'],
+  prevHash: Scalars['String'],
+  hash: Scalars['String'],
+};
+
 export enum CacheControlScope {
   Public = 'PUBLIC',
   Private = 'PRIVATE'
@@ -23,6 +32,7 @@ export type Mutation = {
   _?: Maybe<Scalars['Boolean']>,
   signin?: Maybe<ReturnedUser>,
   login?: Maybe<ReturnedUser>,
+  createBlock: Block,
 };
 
 
@@ -37,10 +47,17 @@ export type MutationLoginArgs = {
   password: Scalars['String']
 };
 
+
+export type MutationCreateBlockArgs = {
+  data: Scalars['String'],
+  token: Scalars['String']
+};
+
 export type Query = {
    __typename?: 'Query',
   _?: Maybe<Scalars['Boolean']>,
   users?: Maybe<Array<ReturnedUser>>,
+  blocks?: Maybe<Array<Block>>,
 };
 
 export type ReturnedUser = {
@@ -138,12 +155,13 @@ export type ResolversTypes = {
   ReturnedUser: ResolverTypeWrapper<ReturnedUser>,
   ID: ResolverTypeWrapper<Scalars['ID']>,
   String: ResolverTypeWrapper<Scalars['String']>,
+  Block: ResolverTypeWrapper<Block>,
+  Int: ResolverTypeWrapper<Scalars['Int']>,
   Mutation: ResolverTypeWrapper<{}>,
   Subscription: ResolverTypeWrapper<{}>,
   CacheControlScope: CacheControlScope,
   Upload: ResolverTypeWrapper<Scalars['Upload']>,
   User: ResolverTypeWrapper<User>,
-  Int: ResolverTypeWrapper<Scalars['Int']>,
 };
 
 /** Mapping between all available schema types and the resolvers parents */
@@ -153,26 +171,37 @@ export type ResolversParentTypes = {
   ReturnedUser: ReturnedUser,
   ID: Scalars['ID'],
   String: Scalars['String'],
+  Block: Block,
+  Int: Scalars['Int'],
   Mutation: {},
   Subscription: {},
   CacheControlScope: CacheControlScope,
   Upload: Scalars['Upload'],
   User: User,
-  Int: Scalars['Int'],
 };
 
 export type CacheControlDirectiveResolver<Result, Parent, ContextType = any, Args = {   maxAge?: Maybe<Maybe<Scalars['Int']>>,
   scope?: Maybe<Maybe<CacheControlScope>> }> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
+export type BlockResolvers<ContextType = any, ParentType extends ResolversParentTypes['Block'] = ResolversParentTypes['Block']> = {
+  index?: Resolver<ResolversTypes['Int'], ParentType, ContextType>,
+  timestamp?: Resolver<ResolversTypes['Int'], ParentType, ContextType>,
+  data?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
+  prevHash?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
+  hash?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
+};
+
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   _?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>,
   signin?: Resolver<Maybe<ResolversTypes['ReturnedUser']>, ParentType, ContextType, RequireFields<MutationSigninArgs, 'email' | 'password'>>,
   login?: Resolver<Maybe<ResolversTypes['ReturnedUser']>, ParentType, ContextType, RequireFields<MutationLoginArgs, 'email' | 'password'>>,
+  createBlock?: Resolver<ResolversTypes['Block'], ParentType, ContextType, RequireFields<MutationCreateBlockArgs, 'data' | 'token'>>,
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   _?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>,
   users?: Resolver<Maybe<Array<ResolversTypes['ReturnedUser']>>, ParentType, ContextType>,
+  blocks?: Resolver<Maybe<Array<ResolversTypes['Block']>>, ParentType, ContextType>,
 };
 
 export type ReturnedUserResolvers<ContextType = any, ParentType extends ResolversParentTypes['ReturnedUser'] = ResolversParentTypes['ReturnedUser']> = {
@@ -195,6 +224,7 @@ export type UserResolvers<ContextType = any, ParentType extends ResolversParentT
 };
 
 export type Resolvers<ContextType = any> = {
+  Block?: BlockResolvers<ContextType>,
   Mutation?: MutationResolvers<ContextType>,
   Query?: QueryResolvers<ContextType>,
   ReturnedUser?: ReturnedUserResolvers<ContextType>,
