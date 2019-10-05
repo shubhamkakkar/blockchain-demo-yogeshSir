@@ -9,16 +9,19 @@ export type Scalars = {
   Float: number,
 };
 
-export type Query = {
-   __typename?: 'Query',
-  allUsers?: Maybe<Array<Maybe<User>>>,
+export type Mutation = {
+   __typename?: 'Mutation',
+  _?: Maybe<Scalars['Boolean']>,
 };
 
-export type User = {
-   __typename?: 'User',
-  id: Scalars['String'],
-  name: Scalars['String'],
-  password: Scalars['String'],
+export type Query = {
+   __typename?: 'Query',
+  _?: Maybe<Scalars['Boolean']>,
+};
+
+export type Subscription = {
+   __typename?: 'Subscription',
+  _?: Maybe<Scalars['Boolean']>,
 };
 
 
@@ -93,32 +96,37 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
   Query: ResolverTypeWrapper<{}>,
-  User: ResolverTypeWrapper<User>,
-  String: ResolverTypeWrapper<Scalars['String']>,
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>,
+  Mutation: ResolverTypeWrapper<{}>,
+  Subscription: ResolverTypeWrapper<{}>,
+  String: ResolverTypeWrapper<Scalars['String']>,
 };
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
   Query: {},
-  User: User,
-  String: Scalars['String'],
   Boolean: Scalars['Boolean'],
+  Mutation: {},
+  Subscription: {},
+  String: Scalars['String'],
+};
+
+export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  _?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>,
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  allUsers?: Resolver<Maybe<Array<Maybe<ResolversTypes['User']>>>, ParentType, ContextType>,
+  _?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>,
 };
 
-export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
-  id?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
-  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
-  password?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
+export type SubscriptionResolvers<ContextType = any, ParentType extends ResolversParentTypes['Subscription'] = ResolversParentTypes['Subscription']> = {
+  _?: SubscriptionResolver<Maybe<ResolversTypes['Boolean']>, "_", ParentType, ContextType>,
 };
 
 export type Resolvers<ContextType = any> = {
+  Mutation?: MutationResolvers<ContextType>,
   Query?: QueryResolvers<ContextType>,
-  User?: UserResolvers<ContextType>,
+  Subscription?: SubscriptionResolvers<ContextType>,
 };
 
 
@@ -127,3 +135,5 @@ export type Resolvers<ContextType = any> = {
  * Use "Resolvers" root object instead. If you wish to get "IResolvers", add "typesPrefix: I" to your config.
 */
 export type IResolvers<ContextType = any> = Resolvers<ContextType>;
+
+import gql from 'graphql-tag';
