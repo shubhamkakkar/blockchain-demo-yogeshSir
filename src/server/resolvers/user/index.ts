@@ -63,5 +63,4 @@ export default {
                 console.log("error login in", er)
             })
     }
-}
-    ;
+};

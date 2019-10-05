@@ -14,13 +14,22 @@ export default {
                 .then(chain => {
                     // @ts-ignore
                     const { email } = JWTVerify(token).email
-                    console.log({ email })
                     const timestamp = Date.now();
                     const nounce = 1;
                     if (chain.length === 0) {
                         //  genesis block
                         const index = 0;
                         const prevHash = '0';
+
+                        const toAddBlock = new BlockClass({
+                            // @ts-ignore TODO:correct this
+                            index,
+                            timestamp,
+                            data,
+                            prevHash,
+                        })
+
+                        console.log({ toAddBlock })
 
                         let newBlock = new BlockSchema({
                             index,
@@ -37,13 +46,15 @@ export default {
                         // @ts-ignore
                         const { index: lastIndex, hash: prevHash }: { index: number, hash: string } = chain.reverse()[0]._doc
                         const index = lastIndex + 1
-                        let newBlock = new BlockSchema({
+                        const newBlock = new BlockSchema(new BlockClass({
+                            // TODO:correct this
+                            // @ts-ignore 
                             index,
                             timestamp,
                             data,
                             prevHash,
-                            hash: blockHashGenerator({ nounce, index, timestamp, data, prevHash })
-                        })
+                        }))
+
                         return newBlock.save()
                             .then(res => res).catch(er => er)
                     }

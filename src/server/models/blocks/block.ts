@@ -27,7 +27,7 @@ const BlockSChema = new Schema({
     },
     nounce: {
         type: Number,
-        rdefault: 1
+        required: true
     },
 }, { collection: "Block" });
 
