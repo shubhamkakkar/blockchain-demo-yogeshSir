@@ -6,7 +6,8 @@ import {config} from "dotenv"
 import {resolve} from "path"
 
 import {ApolloServer} from 'apollo-server-express';
-import schema from './schema';
+import schema from './server/schema';
+import resolvers from './server/resolvers'
 
 config({path: resolve(__dirname, "../.env")});
 const MONGO_URI_DEV = process.env.MONGO_URI_DEV;
@@ -15,6 +16,7 @@ mongoose.connect(MONGO_URI_DEV, {useNewUrlParser: true, useFindAndModify: false,
     .then((res: any) => {
         const server = new ApolloServer({
             typeDefs: schema,
+            resolvers
         });
         const app = express();
         app.use(cors(), bodyParser.json());
