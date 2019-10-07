@@ -43,7 +43,21 @@ export default {
                     }
                 })
                 .catch(er => console.log("err responding blocks - blocks query", er));
-
+        },
+        block: (parent: any, {token, id: _id}: { token: string, id: string }): Promise<[TBlock]> => {
+            // @ts-ignore
+            const {email: {email}} = JWTVerify(token);
+            return UserSchema.findOne({email})
+                .then(user => {
+                    if (user) {
+                        return BlockSchema.findOne(_id).then(block => {
+                            // todo: if key is same as creator key then decrypted data as encrypted data
+                        }).catch(er => er)
+                    } else {
+                        console.log("user not found")
+                    }
+                })
+                .catch(er => console.log("err responding blocks - blocks query", er));
         }
     },
     Mutation: {
