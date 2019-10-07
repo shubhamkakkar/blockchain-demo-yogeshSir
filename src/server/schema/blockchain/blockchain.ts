@@ -1,9 +1,10 @@
-import { gql } from 'apollo-server-express';
+import {gql} from 'apollo-server-express';
+
 
 export default gql`
-    
     extend type Query {
-        blocks: [Block!]
+        blocks(token: String): [Block!]
+        # need to add publicKey as an argument here
     }
 
     extend type Mutation {
@@ -12,7 +13,7 @@ export default gql`
 
     type Block {
         index: Int!
-        timestamp: Int!
+        timestamp: String!
         data: String!
         prevHash: String!
         hash: String!

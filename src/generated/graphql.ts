@@ -16,7 +16,7 @@ export type Scalars = {
 export type Block = {
    __typename?: 'Block',
   index: Scalars['Int'],
-  timestamp: Scalars['Int'],
+  timestamp: Scalars['String'],
   data: Scalars['String'],
   prevHash: Scalars['String'],
   hash: Scalars['String'],
@@ -53,8 +53,8 @@ export type MutationCreateBlockArgs = {
   token: Scalars['String']
 };
 
-export type Private = {
-   __typename?: 'private',
+export type PrivateKey = {
+   __typename?: 'PrivateKey',
   kty: Scalars['String'],
   n: Scalars['String'],
   e: Scalars['String'],
@@ -81,18 +81,18 @@ export type Query = {
   blocks?: Maybe<Array<Block>>,
 };
 
+
+export type QueryBlocksArgs = {
+  token?: Maybe<Scalars['String']>
+};
+
 export type ReturnedUser = {
    __typename?: 'ReturnedUser',
   _id: Scalars['ID'],
   email: Scalars['String'],
   publicKey: PublicKey,
-  privateKey: Private,
+  privateKey: PrivateKey,
   token: Scalars['String'],
-};
-
-
-export type ReturnedUserPublicKeyArgs = {
-  email?: Maybe<Scalars['String']>
 };
 
 export type Subscription = {
@@ -184,7 +184,7 @@ export type ResolversTypes = {
   ID: ResolverTypeWrapper<Scalars['ID']>,
   String: ResolverTypeWrapper<Scalars['String']>,
   PublicKey: ResolverTypeWrapper<PublicKey>,
-  private: ResolverTypeWrapper<Private>,
+  PrivateKey: ResolverTypeWrapper<PrivateKey>,
   Block: ResolverTypeWrapper<Block>,
   Int: ResolverTypeWrapper<Scalars['Int']>,
   Mutation: ResolverTypeWrapper<{}>,
@@ -202,7 +202,7 @@ export type ResolversParentTypes = {
   ID: Scalars['ID'],
   String: Scalars['String'],
   PublicKey: PublicKey,
-  private: Private,
+  PrivateKey: PrivateKey,
   Block: Block,
   Int: Scalars['Int'],
   Mutation: {},
@@ -217,7 +217,7 @@ export type CacheControlDirectiveResolver<Result, Parent, ContextType = any, Arg
 
 export type BlockResolvers<ContextType = any, ParentType extends ResolversParentTypes['Block'] = ResolversParentTypes['Block']> = {
   index?: Resolver<ResolversTypes['Int'], ParentType, ContextType>,
-  timestamp?: Resolver<ResolversTypes['Int'], ParentType, ContextType>,
+  timestamp?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
   data?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
   prevHash?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
   hash?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
@@ -230,7 +230,7 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
   createBlock?: Resolver<ResolversTypes['Block'], ParentType, ContextType, RequireFields<MutationCreateBlockArgs, 'data' | 'token'>>,
 };
 
-export type PrivateResolvers<ContextType = any, ParentType extends ResolversParentTypes['private'] = ResolversParentTypes['private']> = {
+export type PrivateKeyResolvers<ContextType = any, ParentType extends ResolversParentTypes['PrivateKey'] = ResolversParentTypes['PrivateKey']> = {
   kty?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
   n?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
   e?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
@@ -252,14 +252,14 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
   _?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>,
   users?: Resolver<Maybe<Array<ResolversTypes['ReturnedUser']>>, ParentType, ContextType>,
   publicKey?: Resolver<ResolversTypes['PublicKey'], ParentType, ContextType>,
-  blocks?: Resolver<Maybe<Array<ResolversTypes['Block']>>, ParentType, ContextType>,
+  blocks?: Resolver<Maybe<Array<ResolversTypes['Block']>>, ParentType, ContextType, QueryBlocksArgs>,
 };
 
 export type ReturnedUserResolvers<ContextType = any, ParentType extends ResolversParentTypes['ReturnedUser'] = ResolversParentTypes['ReturnedUser']> = {
   _id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>,
   email?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
-  publicKey?: Resolver<ResolversTypes['PublicKey'], ParentType, ContextType, ReturnedUserPublicKeyArgs>,
-  privateKey?: Resolver<ResolversTypes['private'], ParentType, ContextType>,
+  publicKey?: Resolver<ResolversTypes['PublicKey'], ParentType, ContextType>,
+  privateKey?: Resolver<ResolversTypes['PrivateKey'], ParentType, ContextType>,
   token?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
 };
 
@@ -279,7 +279,7 @@ export type UserResolvers<ContextType = any, ParentType extends ResolversParentT
 export type Resolvers<ContextType = any> = {
   Block?: BlockResolvers<ContextType>,
   Mutation?: MutationResolvers<ContextType>,
-  private?: PrivateResolvers<ContextType>,
+  PrivateKey?: PrivateKeyResolvers<ContextType>,
   PublicKey?: PublicKeyResolvers<ContextType>,
   Query?: QueryResolvers<ContextType>,
   ReturnedUser?: ReturnedUserResolvers<ContextType>,
