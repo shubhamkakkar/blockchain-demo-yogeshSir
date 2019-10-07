@@ -13,7 +13,7 @@ const BlockSChema = new Schema({
         type: String,
         required: true
     },
-    createrEmail: {
+    creatorEmail: {
         type: String,
         required: true
     },

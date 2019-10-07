@@ -1,24 +1,24 @@
 import BlockSchema from '../../models/blocks/block'
 import UserSchema from '../../models/user/user'
 import BlockClass from "../../../Blockchain/Block"
-import { Block as TBlock } from "../../../generated/graphql"
-import { blockHashGenerator } from './sha256'
-import { JWTDecode, JWTVerify } from '../user/jwt'
+import {Block as TBlock} from "../../../generated/graphql"
+import {blockHashGenerator} from './sha256'
+import {JWTVerify} from '../user/jwt'
 
 
 // @ts-ignore
-function createNewBlock({ index, data, prevHash, token }) {
+function createNewBlock({index, data, prevHash, token}) {
     const toAddBlock = new BlockClass({
         // TODO:correct this
-        // @ts-ignore 
+        // @ts-ignore
         index,
         data,
         prevHash,
     })
 
-    const newBlock = new BlockSchema({ ...toAddBlock, createrEmail: token })
+    const newBlock = new BlockSchema({...toAddBlock, creatorEmail: token});
 
-    console.log({ newBlock })
+    console.log({newBlock})
     return newBlock.save()
         .then(res => res).catch(er => er)
 }
@@ -29,11 +29,11 @@ export default {
         blocks: async () => await BlockSchema.find()
     },
     Mutation: {
-        createBlock: (parent: any, { data, token }: { data: string, token: string }) => {
+        createBlock: (parent: any, {data, token}: { data: string, token: string }) => {
             // must give in token
             // @ts-ignore
-            const { email } = JWTVerify(token).email
-            return UserSchema.findOne({ email })
+            const {email} = JWTVerify(token).email
+            return UserSchema.findOne({email})
                 .then(user => {
                     if (user) {
                         return BlockSchema.find()
@@ -45,13 +45,13 @@ export default {
                                     const index = 0;
                                     const prevHash = '0';
 
-                                    return createNewBlock({ index, data, prevHash, token })
+                                    return createNewBlock({index, data, prevHash, token})
 
                                 } else {
                                     // @ts-ignore
-                                    const { index: lastIndex, hash: prevHash }: { index: number, hash: string } = chain.reverse()[0]._doc
+                                    const {index: lastIndex, hash: prevHash}: { index: number, hash: string } = chain.reverse()[0]._doc
                                     const index = lastIndex + 1
-                                    return createNewBlock({ index, data, prevHash, token })
+                                    return createNewBlock({index, data, prevHash, token})
 
                                 }
                             })
@@ -66,3 +66,19 @@ export default {
         }
     }
 }
+
+
+/*
+    TODO:
+        * to access blocks :  token and public key is required which will give only block id and creatorPublic Token
+        * to create : token and privateKey is required as :
+            -> token give email
+                -> email give public and private key now : with privateKey we verifies given privateKey
+                    -> this verifies user we will generate block
+        * to read block as per ID required token and private and public key as
+            -> block id help in finding
+                -> with this information we have token in creatorEmail
+                    -> through this we have user
+                        -> user gives private key and public key which is checked against each other
+                            -> if verified : encrypted data is decryped to be shown
+ */

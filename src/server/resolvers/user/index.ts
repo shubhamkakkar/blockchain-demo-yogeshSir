@@ -7,10 +7,9 @@ import {GraphQLError} from "graphql";
 export default {
     Query: {
         users: async () => {
-            const allUsers = await UserSchema.find().then(res => res).catch(er => er);
+            const allUsers = await UserSchema.find().then(allUsers => allUsers).catch(er => er);
             if (allUsers.length) {
                 let returnObj: ReturnedUser[] = [];
-
                 allUsers.forEach(({email, _id, publicKey, privateKey}: ReturnedUser) => returnObj = [...returnObj, {
                     publicKey,
                     privateKey,
@@ -37,10 +36,10 @@ export default {
                             }))
                             .catch(res => res)
                     } else {
+                        const {password, ...restUserInformation} = res._doc;
                         return ({
                             token: jwtToken({email}),
-                            _id: res._id,
-                            email
+                            ...restUserInformation
                         })
                     }
                 })
@@ -51,13 +50,12 @@ export default {
                 if (user !== null) {
                     const encryptedPassword = sha256(password);
                     // @ts-ignore
-                    const {password: userPassword} = user;
+                    const {password: userPassword, ...restUserInformation} = res._doc;
                     if (userPassword === encryptedPassword) {
-                        return {
-                            _id: user._id,
-                            email,
+                        return ({
                             token: jwtToken({email}),
-                        }
+                            ...restUserInformation
+                        })
                     } else {
                         return new GraphQLError("Passwords Didnot match")
                     }

@@ -2,17 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="159561b2-b662-4489-a2c4-acf893c8f4f2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphql.schema.json" beforeDir="false" afterPath="$PROJECT_DIR$/graphql.schema.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/graphql.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/graphql.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/models/user/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/models/user/user.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/models/blocks/block.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/models/blocks/block.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/resolvers/block/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/resolvers/block/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/resolvers/user/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/resolvers/user/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/resolvers/user/jwt.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/resolvers/user/jwt.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/schema/users/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/schema/users/user.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn-error.log" beforeDir="false" afterPath="$PROJECT_DIR$/yarn-error.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -103,7 +97,7 @@
       <workItem from="1570254338396" duration="8283000" />
       <workItem from="1570268941876" duration="2030000" />
       <workItem from="1570307194199" duration="723000" />
-      <workItem from="1570384460837" duration="6799000" />
+      <workItem from="1570384460837" duration="9629000" />
     </task>
     <servers />
   </component>
