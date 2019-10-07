@@ -15,6 +15,7 @@ export type Scalars = {
 
 export type Block = {
    __typename?: 'Block',
+  _id: Scalars['ID'],
   index: Scalars['Int'],
   timestamp: Scalars['String'],
   data: Scalars['String'],
@@ -79,11 +80,18 @@ export type Query = {
   users?: Maybe<Array<ReturnedUser>>,
   publicKey: PublicKey,
   blocks?: Maybe<Array<Block>>,
+  block: Block,
 };
 
 
 export type QueryBlocksArgs = {
-  token?: Maybe<Scalars['String']>
+  token: Scalars['String']
+};
+
+
+export type QueryBlockArgs = {
+  id: Scalars['ID'],
+  token: Scalars['String']
 };
 
 export type ReturnedUser = {
@@ -216,6 +224,7 @@ export type CacheControlDirectiveResolver<Result, Parent, ContextType = any, Arg
   scope?: Maybe<Maybe<CacheControlScope>> }> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
 export type BlockResolvers<ContextType = any, ParentType extends ResolversParentTypes['Block'] = ResolversParentTypes['Block']> = {
+  _id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>,
   index?: Resolver<ResolversTypes['Int'], ParentType, ContextType>,
   timestamp?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
   data?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
@@ -252,7 +261,8 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
   _?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>,
   users?: Resolver<Maybe<Array<ResolversTypes['ReturnedUser']>>, ParentType, ContextType>,
   publicKey?: Resolver<ResolversTypes['PublicKey'], ParentType, ContextType>,
-  blocks?: Resolver<Maybe<Array<ResolversTypes['Block']>>, ParentType, ContextType, QueryBlocksArgs>,
+  blocks?: Resolver<Maybe<Array<ResolversTypes['Block']>>, ParentType, ContextType, RequireFields<QueryBlocksArgs, 'token'>>,
+  block?: Resolver<ResolversTypes['Block'], ParentType, ContextType, RequireFields<QueryBlockArgs, 'id' | 'token'>>,
 };
 
 export type ReturnedUserResolvers<ContextType = any, ParentType extends ResolversParentTypes['ReturnedUser'] = ResolversParentTypes['ReturnedUser']> = {

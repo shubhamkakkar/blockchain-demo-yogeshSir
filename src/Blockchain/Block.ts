@@ -3,7 +3,7 @@ import {sha256} from 'js-sha256';
 
 export type TBlockConstructor = {
     index: number;
-    data: [[number]] | string | any;
+    data: any;
     prevHash: string;
 }
 
@@ -11,7 +11,7 @@ export type TBlockConstructor = {
 export type TBlock = {
     index: number;
     timestamp?: number;
-    data: [[number]] | string | any;
+    data: any;
     prevHash: string;
     hash: string;
     nounce: number;
@@ -21,7 +21,7 @@ export type TBlock = {
 class BlockClass {
     index: number;
     timestamp: number;
-    data: [[number]] | string | any;
+    data: any;
     prevHash: string;
     hash: string;
     nounce: number;

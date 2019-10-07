@@ -50,8 +50,16 @@ export default {
             return UserSchema.findOne({email})
                 .then(user => {
                     if (user) {
-                        return BlockSchema.findOne(_id).then(block => {
+                        return BlockSchema.findOne({_id}).then((block) => {
                             // todo: if key is same as creator key then decrypted data as encrypted data
+
+                            // @ts-ignore
+                            if(Object.entries(block).length){
+                                // @ts-ignore
+                                const {data} = block
+                            }
+
+
                         }).catch(er => er)
                     } else {
                         console.log("user not found")
