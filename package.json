@@ -39,6 +39,7 @@
     "graphql": "^14.5.8",
     "graphql-tools": "^4.0.5",
     "inquirer": "^7.0.0",
+    "js-crypto-rsa": "^0.5.11",
     "js-sha256": "^0.9.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.7.3",

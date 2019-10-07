@@ -9,6 +9,14 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
+    privateKey: {
+        type: Object,
+        required: true
+    },
+    publicKey: {
+        type: Object,
+        required: true
+    },
 }, {collection: "User"});
 
 export default model('User', UserSchema);
