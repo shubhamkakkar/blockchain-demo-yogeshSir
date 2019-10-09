@@ -1,57 +1,66 @@
 import UserSchema from "../../models/user/user"
-import { ReturnedUser, User } from "../../../generated/graphql";
-import { sha256 } from 'js-sha256';
-import { jwtToken } from "./jwt";
-import { GraphQLError } from "graphql";
+import {ReturnedUser, User} from "../../../generated/graphql";
+import {sha256} from 'js-sha256';
+import {jwtToken, userProfileKeys} from "./jwt";
+import {GraphQLError} from "graphql";
 
 export default {
     Query: {
         users: async () => {
-            const allUsers = await UserSchema.find().then(res => res).catch(er => er);
+            const allUsers = await UserSchema.find().then(allUsers => allUsers).catch(er => er);
             if (allUsers.length) {
                 let returnObj: ReturnedUser[] = [];
-                allUsers.forEach(({ email, _id }: {
-                    email: string, _id: string
-                }) => returnObj = [...returnObj, { email, _id, token: jwtToken({ email }) }]);
+                allUsers.forEach(({email, _id, publicKey, privateKey}: ReturnedUser) => returnObj = [...returnObj, {
+                    publicKey,
+                    privateKey,
+                    email,
+                    _id,
+                    token: jwtToken({email})
+                }]);
                 return returnObj;
             }
+            return []
         },
     },
     Mutation: {
-        signin: (parent: any, { email, password }: User) => {
-            return UserSchema.findOne({ email })
-                .then((res: any) => {
+        signin: (parent: any, {email, password}: User) => {
+            return UserSchema.findOne({email})
+                .then(async (res: any) => {
                     if (res === null) {
                         const encryptedPassword = sha256(password);
-                        const user = new UserSchema({ email, password: encryptedPassword });
+                        const {publicKey, privateKey} = await userProfileKeys;
+                        const user = new UserSchema({email, password: encryptedPassword, publicKey, privateKey});
                         return user.save()
-                            .then((_doc) => ({
-                                token: jwtToken({ email }),
-                                ..._doc
-                            }))
+                            .then(res => {
+                                // @ts-ignore
+                                const {password, ...restUserInformation} = res._doc;
+                                return {
+                                    token: jwtToken({email}),
+                                    ...restUserInformation
+                                }
+                            })
                             .catch(res => res)
                     } else {
+                        const {password, ...restUserInformation} = res._doc;
                         return ({
-                            token: jwtToken({ email }),
-                            _id: res._id,
-                            email
+                            token: jwtToken({email}),
+                            ...restUserInformation
                         })
                     }
                 })
                 .catch(er => console.log("error in finding", er))
         },
-        login: (parent: any, { email, password }: User) => UserSchema.findOne({ email })
+        login: (parent: any, {email, password}: User) => UserSchema.findOne({email})
             .then(user => {
                 if (user !== null) {
                     const encryptedPassword = sha256(password);
                     // @ts-ignore
-                    const { password: userPassword } = user;
+                    const {password: userPassword, ...restUserInformation} = res._doc;
                     if (userPassword === encryptedPassword) {
-                        return {
-                            _id: user._id,
-                            email,
-                            token: jwtToken({ email }),
-                        }
+                        return ({
+                            token: jwtToken({email}),
+                            ...restUserInformation
+                        })
                     } else {
                         return new GraphQLError("Passwords Didnot match")
                     }
@@ -62,5 +71,5 @@ export default {
             .catch(er => {
                 console.log("error login in", er)
             })
-    }
+    },
 };

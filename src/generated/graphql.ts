@@ -15,8 +15,9 @@ export type Scalars = {
 
 export type Block = {
    __typename?: 'Block',
+  _id: Scalars['ID'],
   index: Scalars['Int'],
-  timestamp: Scalars['Int'],
+  timestamp: Scalars['String'],
   data: Scalars['String'],
   prevHash: Scalars['String'],
   hash: Scalars['String'],
@@ -50,7 +51,8 @@ export type MutationLoginArgs = {
 
 export type MutationCreateBlockArgs = {
   data: Scalars['String'],
-  token: Scalars['String']
+  token: Scalars['String'],
+  privateKey: Scalars['String']
 };
 
 export type Query = {
@@ -58,12 +60,27 @@ export type Query = {
   _?: Maybe<Scalars['Boolean']>,
   users?: Maybe<Array<ReturnedUser>>,
   blocks?: Maybe<Array<Block>>,
+  block: Block,
+};
+
+
+export type QueryBlocksArgs = {
+  token: Scalars['String']
+};
+
+
+export type QueryBlockArgs = {
+  id: Scalars['ID'],
+  token: Scalars['String'],
+  privateKey: Scalars['String']
 };
 
 export type ReturnedUser = {
    __typename?: 'ReturnedUser',
   _id: Scalars['ID'],
   email: Scalars['String'],
+  publicKey: Scalars['String'],
+  privateKey: Scalars['String'],
   token: Scalars['String'],
 };
 
@@ -184,8 +201,9 @@ export type CacheControlDirectiveResolver<Result, Parent, ContextType = any, Arg
   scope?: Maybe<Maybe<CacheControlScope>> }> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
 export type BlockResolvers<ContextType = any, ParentType extends ResolversParentTypes['Block'] = ResolversParentTypes['Block']> = {
+  _id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>,
   index?: Resolver<ResolversTypes['Int'], ParentType, ContextType>,
-  timestamp?: Resolver<ResolversTypes['Int'], ParentType, ContextType>,
+  timestamp?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
   data?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
   prevHash?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
   hash?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
@@ -195,18 +213,21 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
   _?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>,
   signin?: Resolver<Maybe<ResolversTypes['ReturnedUser']>, ParentType, ContextType, RequireFields<MutationSigninArgs, 'email' | 'password'>>,
   login?: Resolver<Maybe<ResolversTypes['ReturnedUser']>, ParentType, ContextType, RequireFields<MutationLoginArgs, 'email' | 'password'>>,
-  createBlock?: Resolver<ResolversTypes['Block'], ParentType, ContextType, RequireFields<MutationCreateBlockArgs, 'data' | 'token'>>,
+  createBlock?: Resolver<ResolversTypes['Block'], ParentType, ContextType, RequireFields<MutationCreateBlockArgs, 'data' | 'token' | 'privateKey'>>,
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   _?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>,
   users?: Resolver<Maybe<Array<ResolversTypes['ReturnedUser']>>, ParentType, ContextType>,
-  blocks?: Resolver<Maybe<Array<ResolversTypes['Block']>>, ParentType, ContextType>,
+  blocks?: Resolver<Maybe<Array<ResolversTypes['Block']>>, ParentType, ContextType, RequireFields<QueryBlocksArgs, 'token'>>,
+  block?: Resolver<ResolversTypes['Block'], ParentType, ContextType, RequireFields<QueryBlockArgs, 'id' | 'token' | 'privateKey'>>,
 };
 
 export type ReturnedUserResolvers<ContextType = any, ParentType extends ResolversParentTypes['ReturnedUser'] = ResolversParentTypes['ReturnedUser']> = {
   _id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>,
   email?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
+  publicKey?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
+  privateKey?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
   token?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
 };
 

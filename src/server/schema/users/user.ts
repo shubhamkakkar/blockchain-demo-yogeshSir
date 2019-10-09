@@ -1,8 +1,8 @@
-import { gql } from 'apollo-server-express';
+import {gql} from 'apollo-server-express';
 
 export default gql`
     extend type Query {
-        users: [ReturnedUser!]
+        users: [ReturnedUser!],
     }
     extend  type Mutation {
         signin(email:String!, password: String! ): ReturnedUser
@@ -16,6 +16,10 @@ export default gql`
     type ReturnedUser {
         _id: ID!
         email: String!
+        publicKey: String!
+        privateKey: String!
         token: String!
     }
+
+  
 `;

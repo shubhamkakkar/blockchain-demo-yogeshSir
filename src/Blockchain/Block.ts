@@ -1,15 +1,15 @@
 // @ts-ignore
-import { sha256 } from 'js-sha256';
+import {sha256} from 'js-sha256';
 
-type TBlockConstructor = {
-    index: string;
+export type TBlockConstructor = {
+    index: number;
     data: any;
     prevHash: string;
 }
 
 
 export type TBlock = {
-    index: string;
+    index: number;
     timestamp?: number;
     data: any;
     prevHash: string;
@@ -19,18 +19,18 @@ export type TBlock = {
 
 
 class BlockClass {
-    index: string;
+    index: number;
     timestamp: number;
     data: any;
     prevHash: string;
     hash: string;
     nounce: number;
 
-    constructor({ index, data, prevHash }: TBlockConstructor) {
+    constructor({index, data, prevHash}: TBlockConstructor) {
         this.index = index;
-        this.timestamp = Date.now();
         this.data = data;
         this.prevHash = prevHash;
+        this.timestamp = Date.now();
         this.nounce = 1;
         this.hash = this.calcHash();
     }
