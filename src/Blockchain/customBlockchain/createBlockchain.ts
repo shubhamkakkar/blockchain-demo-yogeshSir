@@ -7,7 +7,8 @@ type TCreateBlock = {
 }
 
 const createBlock = (blockInfo: TCreateBlock): TBlock | false => {
-    const toAddBlock = new Block({ ...blockInfo, timestamp: Date.now() });
+    // @ts-ignore
+    const toAddBlock = new Block(blockInfo)
     if (blockInfo.prevHash === "0") {
         // genesis block
         return toAddBlock

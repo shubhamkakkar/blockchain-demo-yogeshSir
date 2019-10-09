@@ -3,6 +3,7 @@
         "experimentalDecorators": true,
         "lib": [
             "es7",
+            "es8",
             "dom",
             "esnext.asynciterable"
         ],
