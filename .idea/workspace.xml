@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="159561b2-b662-4489-a2c4-acf893c8f4f2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/shubham.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/shubham.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Blockchain/Block.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Blockchain/Block.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/resolvers/block/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/resolvers/block/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/resolvers/block/sha256.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/resolvers/block/sha256.ts" afterDir="false" />
     </list>
@@ -37,6 +35,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.tabs" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
   </component>
   <component name="RecentsManager">
@@ -99,7 +98,7 @@
       <workItem from="1570307194199" duration="723000" />
       <workItem from="1570384460837" duration="9987000" />
       <workItem from="1570469549514" duration="13213000" />
-      <workItem from="1570623255931" duration="2890000" />
+      <workItem from="1570623255931" duration="6792000" />
     </task>
     <servers />
   </component>

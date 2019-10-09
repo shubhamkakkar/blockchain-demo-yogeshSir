@@ -2,7 +2,7 @@ import BlockSchema from '../../models/blocks/block'
 import UserSchema from '../../models/user/user'
 import BlockClass, {TBlockConstructor} from "../../../Blockchain/Block"
 import {Block as TBlock, MutationCreateBlockArgs} from "../../../generated/graphql"
-import {signature, Encodeuint8arr, encrypted} from './sha256'
+import {signature, encrypted, decrypted, verified} from './sha256'
 import {JWTVerify} from '../user/jwt'
 
 interface TBlockConstructorCustom extends TBlockConstructor {
@@ -42,21 +42,41 @@ export default {
                 })
                 .catch(er => console.log("err responding blocks - blocks query", er));
         },
-        block: (parent: any, {token, id: _id}: { token: string, id: string }): Promise<[TBlock]> => {
+        block: (parent: any, {token, id: _id, privateKey: privatekey}: { token: string, id: string, privateKey: string }): Promise<[TBlock]> => {
             // @ts-ignore
             const {email: {email}} = JWTVerify(token);
             return UserSchema.findOne({email})
                 .then(user => {
                     if (user) {
                         return BlockSchema.findOne({_id}).then((block) => {
-                            // todo: if key is same as creator key then decrypted data as encrypted data
                             // @ts-ignore
                             if (Object.entries(block).length) {
                                 // @ts-ignore
-                                const {data} = block
+                                const {data} = block;
+                                return decrypted({privatekey, encrypted: data})
+                                    .then(({message, signature}) => {
+                                        // @ts-ignore
+                                        const {publicKey: publicKey} = user;
+                                        const verificationRes: boolean = verified({publicKey, message, signature})
+                                        if (verificationRes) {
+                                            return {
+                                                //@ts-ignore
+                                                ...block._doc,
+                                                data: message
+                                            }
+                                        } else {
+                                            // else and error will both have the response of data where the user message will still be encrypted
+                                            return {
+                                                //@ts-ignore
+                                                ...block._doc,
+                                            }
+                                        }
+                                    })
+                                    .catch(er => ({
+                                        //@ts-ignore
+                                        ...block._doc,
+                                    }));
                             }
-
-
                         }).catch(er => er)
                     } else {
                         console.log("user not found")
@@ -107,7 +127,6 @@ export default {
                                 })
                                 .catch(er => console.log("er", er))
                         }
-
                     } else {
                         console.log("not found - user in block mutation")
                     }

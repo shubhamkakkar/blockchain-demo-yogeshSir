@@ -37,7 +37,7 @@ const crypt = new Crypt();
 
 export const signature = ({privatekey: issuerPrivateKey, message}: { privatekey: string, message: string }) => crypt.signature(issuerPrivateKey, message);
 export const encrypted = ({publickey: publicKey, message, signature}: { publickey: string, message: string, signature: string }) => crypt.encrypt(publicKey, message, signature);
-export const decrypted = ({privateKey, encrypted}: { privateKey: string, encrypted: any }) => crypt.decrypt(privateKey, encrypted);
+export const decrypted = async ({privatekey: privateKey, encrypted}: { privatekey: string, encrypted: any }) => await crypt.decrypt(privateKey, encrypted)
 export const verified = ({
                              publicKey: issuerPublicKey,
                              signature,
