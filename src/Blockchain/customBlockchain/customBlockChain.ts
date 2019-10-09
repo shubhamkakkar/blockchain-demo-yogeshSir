@@ -2,7 +2,6 @@ const inquirer = require("inquirer");
 import createBlockchain from './createBlockchain';
 
 
-
 function customBlockChain() {
     const questions = [{
         type: 'input',
@@ -44,5 +43,7 @@ function customBlockChain() {
     });
 
 }
+
+customBlockChain();
 
 export default customBlockChain
