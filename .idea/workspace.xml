@@ -4,14 +4,14 @@
     <list default="true" id="159561b2-b662-4489-a2c4-acf893c8f4f2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/graphql.schema.json" beforeDir="false" afterPath="$PROJECT_DIR$/graphql.schema.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Blockchain/Block.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Blockchain/Block.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/generated/graphql.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/graphql.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/models/user/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/models/user/user.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/resolvers/block/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/resolvers/block/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/resolvers/block/sha256.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/resolvers/block/sha256.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn-error.log" beforeDir="false" afterPath="$PROJECT_DIR$/yarn-error.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/resolvers/user/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/resolvers/user/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/resolvers/user/jwt.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/resolvers/user/jwt.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/schema/blockchain/blockchain.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/schema/blockchain/blockchain.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/schema/users/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/schema/users/user.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -103,7 +103,8 @@
       <workItem from="1570268941876" duration="2030000" />
       <workItem from="1570307194199" duration="723000" />
       <workItem from="1570384460837" duration="9987000" />
-      <workItem from="1570469549514" duration="11427000" />
+      <workItem from="1570469549514" duration="13213000" />
+      <workItem from="1570623255931" duration="2155000" />
     </task>
     <servers />
   </component>

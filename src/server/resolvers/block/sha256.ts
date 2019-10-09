@@ -1,9 +1,8 @@
 import {sha256} from 'js-sha256';
 import {TextEncoder} from "util"
 // @ts-ignore
-import {RSA as rsarsa, Crypt} from "hybrid-crypto-js"
+import {Crypt} from "hybrid-crypto-js"
 
-import {PrivateKey, PublicKey} from "../../../generated/graphql";
 
 // @ts-ignore
 export const blockHashGenerator = ({index, timestamp, data, prevHash, nounce}): string => sha256(
@@ -36,15 +35,15 @@ export const Decodeuint8arr = (uint8array: Uint8Array) => new TextDecoder("utf-8
 
 const crypt = new Crypt();
 
-const signature = ({issuerPrivateKey, message}: { issuerPrivateKey, message }) => crypt.signature(issuerPrivateKey, message);
-const encrypted = ({publicKey, message, signature}) => crypt.encrypt(publicKey, message, signature)
-const decrypted = ({privateKey, encrypted}) => crypt.decrypt(privateKey, encrypted);
-const verified = ({
-                      issuerPublicKey,
-                      signature,
-                      message,
-                  }: {
-    issuerPublicKey: any,
+export const signature = ({privateKey: issuerPrivateKey, message}: { privateKey: string, message: any }) => crypt.signature(issuerPrivateKey, message);
+export const encrypted = ({publicKey, message, signature}: { publicKey: string, message: any, signature: string }) => crypt.encrypt(publicKey, message, signature)
+export const decrypted = ({privateKey, encrypted}: { privateKey: string, encrypted: any }) => crypt.decrypt(privateKey, encrypted);
+export const verified = ({
+                             publicKey: issuerPublicKey,
+                             signature,
+                             message,
+                         }: {
+    publicKey: string,
     signature: any,
     message: any,
 }): boolean => crypt.verify(

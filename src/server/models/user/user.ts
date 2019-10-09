@@ -10,11 +10,11 @@ const UserSchema = new Schema({
         required: true
     },
     privateKey: {
-        type: Object,
+        type: String,
         required: true
     },
     publicKey: {
-        type: Object,
+        type: String,
         required: true
     },
 }, {collection: "User"});

@@ -19,6 +19,7 @@ export default {
                 }]);
                 return returnObj;
             }
+            return []
         },
     },
     Mutation: {
@@ -30,10 +31,14 @@ export default {
                         const {publicKey, privateKey} = await userProfileKeys;
                         const user = new UserSchema({email, password: encryptedPassword, publicKey, privateKey});
                         return user.save()
-                            .then((_doc) => ({
-                                token: jwtToken({email}),
-                                ..._doc
-                            }))
+                            .then(res => {
+                                // @ts-ignore
+                                const {password, ...restUserInformation} = res._doc;
+                                return {
+                                    token: jwtToken({email}),
+                                    ...restUserInformation
+                                }
+                            })
                             .catch(res => res)
                     } else {
                         const {password, ...restUserInformation} = res._doc;
@@ -67,34 +72,4 @@ export default {
                 console.log("error login in", er)
             })
     },
-    ReturnedUser: {
-        publicKey: ({email}: {
-            email: string
-        }, args: any) => UserSchema.findOne({email: email})
-            .then(user => {
-                if (user !== null) {
-                    // @ts-ignore
-                    return user.publicKey
-                } else {
-                    console.log("user not found - public key", {email})
-                }
-            })
-            .catch(er => {
-                console.log("error finding user", er)
-            }),
-        privateKey: ({email}: {
-            email: string
-        }, args: any) => UserSchema.findOne({email: email})
-            .then(user => {
-                if (user !== null) {
-                    // @ts-ignore
-                    return user.privateKey
-                } else {
-                    console.log("user not found - privateKey key", {email})
-                }
-            })
-            .catch(er => {
-                console.log("error finding user", er)
-            })
-    }
 };
