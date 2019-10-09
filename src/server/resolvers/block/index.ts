@@ -2,32 +2,29 @@ import BlockSchema from '../../models/blocks/block'
 import UserSchema from '../../models/user/user'
 import BlockClass, {TBlockConstructor} from "../../../Blockchain/Block"
 import {Block as TBlock, MutationCreateBlockArgs} from "../../../generated/graphql"
-import {signature, Encodeuint8arr} from './sha256'
+import {signature, Encodeuint8arr, encrypted} from './sha256'
 import {JWTVerify} from '../user/jwt'
 
 interface TBlockConstructorCustom extends TBlockConstructor {
     token: string;
-    privateKey: string
+    privatekey: string;
+    publickey: string;
 }
 
-function createNewBlock({index, data: message, prevHash, token, privateKey}: TBlockConstructorCustom) {
-    const signatureOfUserMessage =  signature({
+function createNewBlock({index, data: message, prevHash, token, privatekey, publickey}: TBlockConstructorCustom) {
+    const signatureOfUserMessage = signature({
         message,
-        privateKey
-    })
+        privatekey
+    });
 
-    console.log({signatureOfUserMessage})
-        // .then((signature: any) => {
-        //     const toAddBlock = new BlockClass({
-        //         index,
-        //         data: signature,
-        //         prevHash,
-        //     });
-        //     const newBlock = new BlockSchema({...toAddBlock, creatorEmail: token});
-        //     return newBlock.save().then(res => res).catch(er => er);
-        // }).catch((er: any) => {
-        //     console.log("error in signature", er)
-        // });
+    const encryptMessage = encrypted({publickey, message, signature: signatureOfUserMessage});
+    const toAddBlock = new BlockClass({
+        index,
+        data: encryptMessage,
+        prevHash,
+    });
+    const newBlock = new BlockSchema({...toAddBlock, creatorEmail: token});
+    return newBlock.save().then(res => res).catch(er => er);
 }
 
 export default {
@@ -76,7 +73,7 @@ export default {
                 .then(user => {
                     if (user) {
                         // @ts-ignore
-                        const {privateKey: userOriginalPrivateKey}: string = user;
+                        const {privateKey: userOriginalPrivateKey, publicKey}: { privateKey: string, publicKey: string } = user;
                         if (givenPrivateKey === userOriginalPrivateKey) {
                             return BlockSchema.find()
                                 .then(chain => {
@@ -91,7 +88,8 @@ export default {
                                             data,
                                             prevHash,
                                             token,
-                                            privateKey: givenPrivateKey
+                                            privatekey: givenPrivateKey,
+                                            publickey: publicKey
                                         })
                                     } else {
                                         // @ts-ignore
@@ -102,7 +100,8 @@ export default {
                                             data,
                                             prevHash,
                                             token,
-                                            privateKey: givenPrivateKey
+                                            privatekey: givenPrivateKey,
+                                            publickey: publicKey
                                         })
                                     }
                                 })

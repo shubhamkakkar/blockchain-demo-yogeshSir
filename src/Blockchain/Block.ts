@@ -28,9 +28,9 @@ class BlockClass {
 
     constructor({index, data, prevHash}: TBlockConstructor) {
         this.index = index;
-        this.timestamp = Date.now();
         this.data = data;
         this.prevHash = prevHash;
+        this.timestamp = Date.now();
         this.nounce = 1;
         this.hash = this.calcHash();
     }
