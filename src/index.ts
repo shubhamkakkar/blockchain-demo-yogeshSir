@@ -26,5 +26,3 @@ mongoose.connect(MONGO_URI_DEV, {useNewUrlParser: true, useFindAndModify: false,
         );
     })
     .catch((er: any) => console.log("failed to connect to mongoose", er));
-
-
