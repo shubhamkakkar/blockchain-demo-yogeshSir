@@ -9,5 +9,5 @@ interface IPasswordCompareBcrycpt extends TEncrycptedPasswordBcrypt {
 }
 
 const salt = genSaltSync(10);
-const encryptedPasswordBcrycpt = ({password}: TEncrycptedPasswordBcrypt): string => hashSync(password, salt)
-const passwordCompareBcrycpt = ({password, encryptedPassword}: IPasswordCompareBcrycpt) => compareSync(password, encryptedPassword)
+export const encryptBcrycpt = ({password}: TEncrycptedPasswordBcrypt): string => hashSync(password, salt)
+export const compareBcrycpt = ({password, encryptedPassword}: IPasswordCompareBcrycpt) => compareSync(password, encryptedPassword)

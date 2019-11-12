@@ -3,15 +3,15 @@ import {sha256} from "js-sha256";
 import {jwtToken} from "../jwt";
 import {GraphQLError} from "graphql";
 import {User} from "../../../../generated/graphql";
+import {compareBcrycpt} from "../bcryptHelperFns";
 
 export default function loginMutation({email, password}: User) {
     return UserSchema.findOne({email})
         .then(user => {
             if (user !== null) {
-                const encryptedPassword = sha256(password);
                 // @ts-ignore
-                const {password: userPassword, ...restUserInformation} = res._doc;
-                if (userPassword === encryptedPassword) {
+                const {password:encryptedPassword, ...restUserInformation} = res._doc;
+                if (compareBcrycpt({password, encryptedPassword})) {
                     return ({
                         token: jwtToken({email}),
                         ...restUserInformation

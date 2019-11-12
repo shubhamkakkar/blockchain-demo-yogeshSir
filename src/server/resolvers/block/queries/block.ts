@@ -1,7 +1,7 @@
 import {JWTVerify} from "../../user/jwt";
 import UserSchema from "../../../models/user/user";
 import BlockSchema from "../../../models/blocks/block";
-import {decrypted, verified} from "../sha256";
+import {decrypted, verified} from "../customHelperFunctions";
 import {QueryBlockArgs} from "../../../../generated/graphql";
 
 
@@ -17,6 +17,7 @@ export default function blockQuery({token, id: _id, privateKey: privatekey}: Que
                         // @ts-ignore
                         const {data} = block;
                         return decrypted({privatekey, encrypted: data})
+                        // @ts-ignore
                             .then(({message, signature}) => {
                                 // @ts-ignore
                                 const {publicKey: publicKey} = user;

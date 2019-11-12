@@ -35,7 +35,7 @@ export const Decodeuint8arr = (uint8array: Uint8Array) => new TextDecoder("utf-8
 
 const crypt = new Crypt();
 
-export const signature = ({privatekey: issuerPrivateKey, message}: { privatekey: string, message: string }) => crypt.signature(issuerPrivateKey, message);
+    export const signature = ({privatekey: issuerPrivateKey, message}: { privatekey: string, message: string }) => crypt.signature(issuerPrivateKey, message);
 export const encrypted = ({publickey: publicKey, message, signature}: { publickey: string, message: string, signature: string }) => crypt.encrypt(publicKey, message, signature);
 export const decrypted = async ({privatekey: privateKey, encrypted}: { privatekey: string, encrypted: any }) => await crypt.decrypt(privateKey, encrypted)
 export const verified = ({
