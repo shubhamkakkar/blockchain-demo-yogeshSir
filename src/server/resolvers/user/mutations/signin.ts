@@ -9,7 +9,13 @@ export default function signinMutation({email, password}: User) {
             if (res === null) {
                 const encryptedPassword = sha256(password);
                 const {publicKey, privateKey} = await userProfileKeys;
-                const user = new UserSchema({email, password: encryptedPassword, publicKey, privateKey});
+                const encryptedPrivateKey = sha256(password=privateKey);
+                const user = new UserSchema({
+                    email,
+                    password: encryptedPassword,
+                    publicKey,
+                    privateKey: encryptedPrivateKey
+                });
                 return user.save()
                     .then(res => {
                         // @ts-ignore

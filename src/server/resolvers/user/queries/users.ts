@@ -3,7 +3,7 @@ import {ReturnedUser} from "../../../../generated/graphql";
 import {jwtToken} from "../jwt";
 
 export default function usersQuery() {
-    const allUsers = UserSchema.find().then(allUsers => {
+    return UserSchema.find().then(allUsers => {
         if (allUsers.length) {
             let returnObj: ReturnedUser[] = [];
             //@ts-ignore

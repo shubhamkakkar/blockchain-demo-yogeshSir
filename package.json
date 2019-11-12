@@ -11,7 +11,7 @@
     "fuser": "fuser -k -n tcp 4000 && yarn ts",
     "start": "nodemon --exec ts-node  src/index.ts",
     "automatedBlock": "ts-node src/Blockchain/automatedBlockchain/automatedBlockchain.ts",
-    "customBlock" : "ts-node src/Blockchain/customBlockchain/customBlockChain.ts",
+    "customBlock": "ts-node src/Blockchain/customBlockchain/customBlockChain.ts",
     "git": "git add .  && git commit -m"
   },
   "keywords": [],
@@ -34,7 +34,9 @@
     "typescript": "^3.6.3"
   },
   "dependencies": {
+    "@types/bcryptjs": "^2.4.2",
     "apollo-server-express": "^2.9.4",
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^8.1.0",
     "esm": "^3.2.25",

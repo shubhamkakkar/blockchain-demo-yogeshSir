@@ -10,7 +10,7 @@ import schema from './server/schema';
 import resolvers from './server/resolvers'
 
 config({path: resolve(__dirname, "../.env")});
-const MONGO_URI_DEV = process.env.MONGO_URI_DEV;
+const {MONGO_URI_DEV} = process.env;
 // @ts-ignore
 mongoose.connect(MONGO_URI_DEV, {useNewUrlParser: true, useFindAndModify: false, useUnifiedTopology: true})
     .then((res: any) => {
