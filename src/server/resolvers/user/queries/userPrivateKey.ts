@@ -4,7 +4,6 @@ import {decrypted, verified} from "../../block/customHelperFunctions";
 
 
 export default function userPrivateKeyQuery(token: string) {
-
     // @ts-ignore
     const {email: {email}} = JWTVerify(token);
     return UserSchema.findOne({email})
