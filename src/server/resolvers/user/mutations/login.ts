@@ -22,11 +22,11 @@ export default function loginMutation({email, password}: User) {
                     publicKey
                 }).then((passwordRes: boolean) => {
                     if (passwordRes) {
-                        return ({
+                        return {
                             token: jwtToken({email}),
                             ...restUserInformation,
                             privateKey, publicKey
-                        })
+                        }
                     } else {
                         return new GraphQLError("Passwords Didnot match")
                     }

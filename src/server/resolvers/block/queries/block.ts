@@ -1,7 +1,7 @@
 import {JWTVerify} from "../../user/helperUserFunctions/jwt";
 import UserSchema from "../../../models/user/user";
 import BlockSchema from "../../../models/blocks/block";
-import {decrypted, verification, verified} from "../../globalHelperFunctions";
+import {verification} from "../../globalHelperFunctions";
 import {QueryBlockArgs} from "../../../../generated/graphql";
 
 // @ts-ignore
@@ -16,7 +16,7 @@ export default function blockQuery({token, id: _id, password}: QueryBlockArgs) {
                         if (block) {
                             const {
                                 data,
-
+                                password: originalPassword,
                                 ...restBlockInformation
                                 // @ts-ignore
                             } = block._doc;
@@ -27,17 +27,19 @@ export default function blockQuery({token, id: _id, password}: QueryBlockArgs) {
                                     const {
                                         publicKey, privateKey
                                         // @ts-ignore
-                                    } = user._doc
+                                    } = user._doc;
                                     return verification({publicKey, privateKey, encrypted: data}).then(dataRes => {
-                                        if (dataRes) {
+                                        if (dataRes && password === originalPassword) {
                                             return {
                                                 data: dataRes,
+                                                password,
                                                 ...restBlockInformation
                                             }
                                         } else {
                                             return {
                                                 // @ts-ignore
-                                                ...block._doc
+                                                ...block._doc,
+                                                password: "encrypted password, only shown to the owner"
                                             }
                                         }
                                     })
