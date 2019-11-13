@@ -1,6 +1,5 @@
 import UserSchema from "../../../models/user/user";
 import {JWTVerify} from "../jwt";
-import {decrypted, verified} from "../../block/customHelperFunctions";
 
 
 export default function userPrivateKeyQuery(token: string) {
@@ -11,9 +10,8 @@ export default function userPrivateKeyQuery(token: string) {
             if (user) {
                 // @ts-ignore
                 const {privateKey} = user._doc;
-                return decrypted({privatekey: privateKey, encrypted: privateKey})
-                    .then(({message}: { message: string }) => message)
-                    .catch(er => console.log("failed in dcryption of privateKey in user"))
+                console.log({privateKey})
+
             } else {
                 console.log("user not found - user private key")
             }

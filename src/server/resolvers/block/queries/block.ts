@@ -1,7 +1,7 @@
 import {JWTVerify} from "../../user/jwt";
 import UserSchema from "../../../models/user/user";
 import BlockSchema from "../../../models/blocks/block";
-import {decrypted, verified} from "../customHelperFunctions";
+import {decrypted, verified} from "../../helperFunction";
 import {QueryBlockArgs} from "../../../../generated/graphql";
 
 

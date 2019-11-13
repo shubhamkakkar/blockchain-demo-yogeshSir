@@ -10,7 +10,7 @@ export default function loginMutation({email, password}: User) {
         .then(user => {
             if (user !== null) {
                 // @ts-ignore
-                const {password:encryptedPassword, ...restUserInformation} = res._doc;
+                const {password:encryptedPassword, ...restUserInformation} = user._doc;
                 if (compareBcrycpt({password, encryptedPassword})) {
                     return ({
                         token: jwtToken({email}),

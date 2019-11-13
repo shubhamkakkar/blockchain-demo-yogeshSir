@@ -1,18 +1,7 @@
 import UserSchema from "../../../models/user/user";
 import {jwtToken, userProfileKeys} from "../jwt";
 import {User} from "../../../../generated/graphql";
-import {encryptBcrycpt} from "../bcryptHelperFns";
-import {encrypted, signature} from "../../block/customHelperFunctions";
-
-
-async function encryptedPrivateKey(privatekey: string, message = "message", publickey = "publickey") {
-    const signatureOfUserPrivateKey = signature({
-        message,
-        privatekey
-    });
-
-    return await encrypted({publickey, message, signature: signatureOfUserPrivateKey});
-}
+import {stringEncryption} from "../../helperFunction";
 
 
 export default function signinMutation({email, password}: User) {
@@ -20,14 +9,18 @@ export default function signinMutation({email, password}: User) {
         .then(async (res: any) => {
             if (res === null) {
                 // TODO:  remove bcryptjs
-                const encryptedPassword = encryptBcrycpt({password});
                 const {publicKey, privateKey} = await userProfileKeys;
+                const encryptedPassword = stringEncryption({
+                    publickey: publicKey,
+                    privatekey: privateKey,
+                    message: password
+                });
 
                 const user = new UserSchema({
                     email,
                     password: encryptedPassword,
                     publicKey,
-                    privateKey: encryptedPrivateKey(privateKey)
+                    privateKey: privateKey
                 });
                 return user.save()
                     .then(res => {
