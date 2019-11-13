@@ -1,7 +1,7 @@
 import UserSchema from "../../../models/user/user";
-import {jwtToken, userProfileKeys} from "../jwt";
+import {jwtToken, userProfileKeys} from "../helperUserFunctions/jwt";
 import {User} from "../../../../generated/graphql";
-import {stringEncryption} from "../../helperFunction";
+import {stringEncryption} from "../../globalHelperFunctions";
 
 
 export default function signinMutation({email, password}: User) {

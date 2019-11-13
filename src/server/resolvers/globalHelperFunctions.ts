@@ -30,7 +30,7 @@ export function stringEncryption({message, privatekey, publickey}: { message: st
 }
 
 
-export function verification({
+export async function verification({
                                        publicKey: issuerPublicKey,
                                        encrypted,
                                        privateKey
@@ -38,7 +38,7 @@ export function verification({
     publicKey: string,
     privateKey: string,
     encrypted: string
-}): boolean {
+}): Promise<boolean> {
     const {message, signature} = crypt.decrypt(privateKey, encrypted)
     return verified({
         publicKey: issuerPublicKey,

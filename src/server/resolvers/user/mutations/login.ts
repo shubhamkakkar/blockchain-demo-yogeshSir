@@ -1,10 +1,9 @@
 import UserSchema from "../../../models/user/user";
 import {sha256} from "js-sha256";
-import {jwtToken} from "../jwt";
+import {jwtToken} from "../helperUserFunctions/jwt";
 import {GraphQLError} from "graphql";
 import {User} from "../../../../generated/graphql";
-import {compareBcrycpt} from "../bcryptHelperFns";
-import {decrypted, stringEncryption, verification} from "../../helperFunction";
+import {stringEncryption, verification} from "../../globalHelperFunctions";
 
 export default function loginMutation({email, password}: User) {
     return UserSchema.findOne({email})
@@ -22,7 +21,7 @@ export default function loginMutation({email, password}: User) {
                     privateKey: privateKey,
                     encrypted: encryptedPassword,
                     publicKey: publicKey
-                }).then(passwordRes => {
+                }).then((passwordRes: boolean) => {
                     if (passwordRes) {
                         return ({
                             token: jwtToken({email}),

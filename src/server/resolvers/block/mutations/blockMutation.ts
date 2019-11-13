@@ -1,8 +1,8 @@
 import {MutationCreateBlockArgs} from "../../../../generated/graphql";
-import {JWTVerify} from "../../user/jwt";
+import {JWTVerify} from "../../user/helperUserFunctions/jwt";
 import UserSchema from "../../../models/user/user";
 import BlockSchema from "../../../models/blocks/block";
-import {stringEncryption} from "../../helperFunction";
+import {stringEncryption} from "../../globalHelperFunctions";
 import BlockClass, {TBlockConstructor} from "../../../../Blockchain/Block";
 
 interface TBlockConstructorCustom extends TBlockConstructor {

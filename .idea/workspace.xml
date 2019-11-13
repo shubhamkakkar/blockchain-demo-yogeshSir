@@ -3,12 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="159561b2-b662-4489-a2c4-acf893c8f4f2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/resolvers/helperFunction.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/resolvers/helperFunction.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/resolvers/user/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/resolvers/user/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/resolvers/block/customHelperFunctions.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/resolvers/block/mutations/blockMutation.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/resolvers/block/mutations/blockMutation.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/resolvers/block/queries/block.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/resolvers/block/queries/block.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/resolvers/block/queries/blocks.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/resolvers/block/queries/blocks.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/resolvers/helperFunction.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/resolvers/globalHelperFunctions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/resolvers/user/bcryptHelperFns.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/resolvers/user/jwt.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/resolvers/user/helperUserFunctions/jwt.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/resolvers/user/mutations/login.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/resolvers/user/mutations/login.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/resolvers/user/mutations/signin.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/resolvers/user/mutations/signin.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/resolvers/user/queries/userPrivateKey.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/schema/users/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/schema/users/user.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/resolvers/user/queries/users.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/resolvers/user/queries/users.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,11 +48,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/server/resolvers/user/helperUserFunctions" />
       <recent name="$PROJECT_DIR$/src/server" />
       <recent name="$PROJECT_DIR$/src/schema/users" />
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/server" />
-      <recent name="$PROJECT_DIR$/automatedBlockchain" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -125,7 +129,7 @@
       <workItem from="1570384460837" duration="9987000" />
       <workItem from="1570469549514" duration="13213000" />
       <workItem from="1570623255931" duration="8319000" />
-      <workItem from="1573586076285" duration="13539000" />
+      <workItem from="1573586076285" duration="13900000" />
     </task>
     <servers />
   </component>

@@ -1,6 +1,6 @@
 import UserSchema from "../../../models/user/user";
 import {ReturnedUser} from "../../../../generated/graphql";
-import {jwtToken} from "../jwt";
+import {jwtToken} from "../helperUserFunctions/jwt";
 
 export default function usersQuery() {
     return UserSchema.find().then(allUsers => {
