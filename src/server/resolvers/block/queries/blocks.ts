@@ -9,7 +9,23 @@ export default function blocksQuery({token}: QueryBlocksArgs) {
     return UserSchema.findOne({email})
         .then(user => {
             if (user) {
-                return BlockSchema.find().then(res => res).catch(er => er)
+                return BlockSchema.find().then(blocks => {
+                    if (blocks.length) {
+                        return blocks.map(block => {
+                            const {
+                                // @ts-ignore
+                                password, ...resInformation
+                            } = block;
+                            return {
+                                password: "encrypted Password, would be shown only to the owner",
+                                ...resInformation
+                            }
+                        })
+                    } else {
+                        console.log("no blocks found");
+                        return []
+                    }
+                }).catch(er => er)
             } else {
                 console.log("user not found")
             }

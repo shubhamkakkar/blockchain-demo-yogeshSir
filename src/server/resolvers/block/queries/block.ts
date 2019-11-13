@@ -4,7 +4,7 @@ import BlockSchema from "../../../models/blocks/block";
 import {decrypted, verified} from "../../globalHelperFunctions";
 import {QueryBlockArgs} from "../../../../generated/graphql";
 
-
+// @ts-ignore
 export default function blockQuery({token, id: _id, privateKey: privatekey}: QueryBlockArgs) {
     // @ts-ignore
     const {email: {email}} = JWTVerify(token);

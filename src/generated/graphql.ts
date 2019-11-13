@@ -73,7 +73,7 @@ export type QueryBlocksArgs = {
 export type QueryBlockArgs = {
   id: Scalars['ID'],
   token: Scalars['String'],
-  privateKey: Scalars['String']
+  password: Scalars['String']
 };
 
 export type ReturnedUser = {
@@ -222,7 +222,7 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
   _?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>,
   users?: Resolver<Maybe<Array<ResolversTypes['ReturnedUser']>>, ParentType, ContextType>,
   blocks?: Resolver<Maybe<Array<ResolversTypes['Block']>>, ParentType, ContextType, RequireFields<QueryBlocksArgs, 'token'>>,
-  block?: Resolver<ResolversTypes['Block'], ParentType, ContextType, RequireFields<QueryBlockArgs, 'id' | 'token' | 'privateKey'>>,
+  block?: Resolver<ResolversTypes['Block'], ParentType, ContextType, RequireFields<QueryBlockArgs, 'id' | 'token' | 'password'>>,
 };
 
 export type ReturnedUserResolvers<ContextType = any, ParentType extends ResolversParentTypes['ReturnedUser'] = ResolversParentTypes['ReturnedUser']> = {

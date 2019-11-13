@@ -31,7 +31,6 @@ function createNewBlock({index, data: message, prevHash, token, privatekey, publ
             temp += chars[index] + punctuation[index]
         }
         return temp
-
     };
 
     const newBlock = new BlockSchema({...toAddBlock, creatorEmail: token, password: password()});
