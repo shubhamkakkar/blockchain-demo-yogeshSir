@@ -17,13 +17,17 @@ export default function signinMutation({email, password}: User) {
                     message: password
                 });
 
-                console.log({encryptedPassword})
+                const encryptedPrivateKey = stringEncryption({
+                    publickey: publicKey,
+                    privatekey: privateKey,
+                    message: privateKey
+                });
 
                 const user = new UserSchema({
                     email,
                     password: encryptedPassword,
                     publicKey,
-                    privateKey
+                    privateKey: encryptedPrivateKey
                 });
 
                 return user.save()

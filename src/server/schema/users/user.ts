@@ -13,7 +13,6 @@ export default gql`
         password: String!
     }
     
-
     type ReturnedUser {
         _id: ID!
         email: String!
