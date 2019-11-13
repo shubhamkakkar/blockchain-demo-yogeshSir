@@ -5,15 +5,15 @@ const crypt = new Crypt();
 
 const signature = ({privatekey: issuerPrivateKey, message}: { privatekey: string, message: string }) => crypt.signature(issuerPrivateKey, message);
 const encrypted = ({publickey: publicKey, message, signature}: { publickey: string, message: string, signature: string }) => crypt.encrypt(publicKey, message, signature);
-export const decrypted = async ({privatekey: privateKey, encrypted}: { privatekey: string, encrypted: any }) => await crypt.decrypt(privateKey, encrypted)
+export const decrypted = ({privatekey: privateKey, encrypted}: { privatekey: string, encrypted: string }) => crypt.decrypt(privateKey, encrypted)
 export const verified = ({
                              publicKey: issuerPublicKey,
                              signature,
                              message,
                          }: {
     publicKey: string,
-    signature: any,
-    message: any,
+    signature: string,
+    message: string,
 }): boolean => crypt.verify(
     issuerPublicKey,
     signature,
@@ -27,4 +27,29 @@ export function stringEncryption({message, privatekey, publickey}: { message: st
         privatekey
     });
     return encrypted({publickey, message, signature: signatureOfUserMessage})
+}
+
+
+export async function verification({
+                                       publicKey: issuerPublicKey,
+                                       encrypted,
+                                       privateKey
+                                   }: {
+    publicKey: string,
+    privateKey: string,
+    encrypted: string
+}) {
+
+
+    crypt.decrypt(privateKey, encrypted)
+        .then((res: ArrayBuffer) => console.log(res))
+        .catch((er: string) => console.log("er in decrypt", er));
+    // console.log({sx})
+    // return verified({
+    //     publicKey: issuerPublicKey,
+    //     signature,
+    //     message,
+    // })
+
+    return true
 }

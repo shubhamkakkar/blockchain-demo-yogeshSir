@@ -36,7 +36,7 @@ export default function blockQuery({token, id: _id, privateKey: privatekey}: Que
                                     }
                                 }
                             })
-                            .catch(er => ({
+                            .catch((er: any) => ({
                                 //@ts-ignore
                                 ...block._doc,
                             }));

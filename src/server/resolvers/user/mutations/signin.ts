@@ -10,24 +10,20 @@ export default function signinMutation({email, password}: User) {
             if (res === null) {
                 // TODO:  remove bcryptjs
                 const {publicKey, privateKey} = await userProfileKeys;
+
                 const encryptedPassword = stringEncryption({
                     publickey: publicKey,
                     privatekey: privateKey,
                     message: password
                 });
 
-                const encryptedPrivateKey = stringEncryption({
-                    publickey: publicKey,
-                    privatekey: privateKey,
-                    message: privateKey
-                });
-
                 const user = new UserSchema({
                     email,
                     password: encryptedPassword,
                     publicKey,
-                    privateKey: encryptedPrivateKey
+                    privateKey
                 });
+
                 return user.save()
                     .then(res => {
                         // @ts-ignore

@@ -1,7 +1,6 @@
 import UserSchema from "../../../models/user/user";
 import {JWTVerify} from "../jwt";
 
-
 export default function userPrivateKeyQuery(token: string) {
     // @ts-ignore
     const {email: {email}} = JWTVerify(token);
@@ -9,8 +8,7 @@ export default function userPrivateKeyQuery(token: string) {
         .then(user => {
             if (user) {
                 // @ts-ignore
-                const {privateKey} = user._doc;
-                console.log({privateKey})
+                const {privateKey, publicKey} = user._doc;
 
             } else {
                 console.log("user not found - user private key")
