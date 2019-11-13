@@ -14,7 +14,7 @@ export const verified = ({
     publicKey: string,
     signature: string,
     message: string,
-}): boolean => crypt.verify(
+}) => crypt.verify(
     issuerPublicKey,
     signature,
     message,
@@ -38,11 +38,16 @@ export async function verification({
     publicKey: string,
     privateKey: string,
     encrypted: string
-}): Promise<boolean> {
+}) {
     const {message, signature} = crypt.decrypt(privateKey, encrypted)
-    return verified({
+    const verificationBool = verified({
         publicKey: issuerPublicKey,
         signature,
         message,
-    })
+    });
+    if (verificationBool) {
+        return message
+    } else {
+        return false
+    }
 }

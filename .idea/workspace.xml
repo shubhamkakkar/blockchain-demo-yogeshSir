@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="159561b2-b662-4489-a2c4-acf893c8f4f2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/server/resolvers/user/queries/privateKeyDecryption.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphql.schema.json" beforeDir="false" afterPath="$PROJECT_DIR$/graphql.schema.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/graphql.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/graphql.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/resolvers/block/mutations/blockMutation.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/resolvers/block/mutations/blockMutation.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/resolvers/block/queries/block.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/resolvers/block/queries/block.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/resolvers/block/queries/blocks.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/resolvers/block/queries/blocks.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/resolvers/globalHelperFunctions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/resolvers/globalHelperFunctions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/schema/blockchain/blockchain.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/schema/blockchain/blockchain.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -124,7 +124,7 @@
       <workItem from="1570384460837" duration="9987000" />
       <workItem from="1570469549514" duration="13213000" />
       <workItem from="1570623255931" duration="8319000" />
-      <workItem from="1573586076285" duration="21151000" />
+      <workItem from="1573586076285" duration="22948000" />
     </task>
     <servers />
   </component>
