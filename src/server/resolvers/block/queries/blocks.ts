@@ -14,13 +14,19 @@ export default function blocksQuery({token}: QueryBlocksArgs) {
                     if (blocks.length) {
                         return blocks.map(block => {
                             const {
+                                password,
+                                ...restInformation
                                 // @ts-ignore
-                                password, ...restInformation
-                            } = block;
+
+                            } = block._doc;
+                            // @ts-ignore
+                            const {email: creatorEmailObj} = JWTVerify(restInformation.creatorEmail);
+
                             return {
-                                password: "encrypted Password, would be shown only to the owner",
                                 // @ts-ignore
-                                ...restInformation._doc
+                                password: email === creatorEmailObj.email ? password : "encrypted Password, would be shown only to the owner",
+                                // @ts-ignore
+                                ...restInformation
                             }
                         })
                     } else {

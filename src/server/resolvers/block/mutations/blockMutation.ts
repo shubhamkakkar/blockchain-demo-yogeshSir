@@ -37,7 +37,6 @@ function createNewBlock({index, data: message, prevHash, token, privatekey, publ
     return newBlock.save().then(res => res).catch(er => er);
 }
 
-
 export function blockCreationMutation({data, token, privateKey: givenPrivateKey}: MutationCreateBlockArgs) {
     // @ts-ignore
     const {email: {email}} = JWTVerify(token);
