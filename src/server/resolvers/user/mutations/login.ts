@@ -4,23 +4,30 @@ import {jwtToken} from "../jwt";
 import {GraphQLError} from "graphql";
 import {User} from "../../../../generated/graphql";
 import {compareBcrycpt} from "../bcryptHelperFns";
-import {decrypted, verification} from "../../helperFunction";
+import {decrypted, stringEncryption, verification} from "../../helperFunction";
 
 export default function loginMutation({email, password}: User) {
     return UserSchema.findOne({email})
         .then(user => {
             if (user !== null) {
                 // @ts-ignore
-                const restUserInformation = user._doc;
+                const {privateKey, publicKey, ...restUserInformation} = user._doc;
+
+                const encryptedPassword = stringEncryption({
+                    publickey: publicKey,
+                    privatekey: privateKey,
+                    message: password
+                });
                 return verification({
-                    privateKey: restUserInformation.privateKey,
-                    encrypted: password,
-                    publicKey: restUserInformation.publicKey
+                    privateKey: privateKey,
+                    encrypted: encryptedPassword,
+                    publicKey: publicKey
                 }).then(passwordRes => {
                     if (passwordRes) {
                         return ({
                             token: jwtToken({email}),
-                            ...restUserInformation
+                            ...restUserInformation,
+                            privateKey, publicKey
                         })
                     } else {
                         return new GraphQLError("Passwords Didnot match")

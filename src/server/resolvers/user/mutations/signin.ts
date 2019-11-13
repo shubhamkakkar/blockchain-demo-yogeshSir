@@ -17,6 +17,8 @@ export default function signinMutation({email, password}: User) {
                     message: password
                 });
 
+                console.log({encryptedPassword})
+
                 const user = new UserSchema({
                     email,
                     password: encryptedPassword,

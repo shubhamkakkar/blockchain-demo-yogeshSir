@@ -30,7 +30,7 @@ export function stringEncryption({message, privatekey, publickey}: { message: st
 }
 
 
-export async function verification({
+export function verification({
                                        publicKey: issuerPublicKey,
                                        encrypted,
                                        privateKey
@@ -38,18 +38,11 @@ export async function verification({
     publicKey: string,
     privateKey: string,
     encrypted: string
-}) {
-
-
-    crypt.decrypt(privateKey, encrypted)
-        .then((res: ArrayBuffer) => console.log(res))
-        .catch((er: string) => console.log("er in decrypt", er));
-    // console.log({sx})
-    // return verified({
-    //     publicKey: issuerPublicKey,
-    //     signature,
-    //     message,
-    // })
-
-    return true
+}): boolean {
+    const {message, signature} = crypt.decrypt(privateKey, encrypted)
+    return verified({
+        publicKey: issuerPublicKey,
+        signature,
+        message,
+    })
 }

@@ -3,7 +3,6 @@ import {gql} from 'apollo-server-express';
 export default gql`
     extend type Query {
         users: [ReturnedUser!],
-        privateKey(token:String): String!
     }
     extend  type Mutation {
         signin(email:String!, password: String! ): ReturnedUser
