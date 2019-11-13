@@ -18,5 +18,6 @@ export default gql`
         data: String!
         prevHash: String!
         hash: String!
+        password:String!
     }
 `;

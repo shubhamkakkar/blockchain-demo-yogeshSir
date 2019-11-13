@@ -21,6 +21,7 @@ export type Block = {
   data: Scalars['String'],
   prevHash: Scalars['String'],
   hash: Scalars['String'],
+  password: Scalars['String'],
 };
 
 export enum CacheControlScope {
@@ -207,6 +208,7 @@ export type BlockResolvers<ContextType = any, ParentType extends ResolversParent
   data?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
   prevHash?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
   hash?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
+  password?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
 };
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {

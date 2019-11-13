@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import {Schema, model} from "mongoose";
 
 const BlockSChema = new Schema({
     index: {
@@ -29,6 +29,10 @@ const BlockSChema = new Schema({
         type: Number,
         required: true
     },
-}, { collection: "Block" });
+    password: {
+        type: String,
+        required: true
+    }
+}, {collection: "Block"});
 
 export default model('Block', BlockSChema);

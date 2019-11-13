@@ -18,6 +18,12 @@ export type TBlock = {
 }
 
 
+export type TpasswordGen = {
+    hash: string;
+    publickey: string;
+    privatekey: string;
+}
+
 class BlockClass {
     index: number;
     timestamp: number;
@@ -33,6 +39,7 @@ class BlockClass {
         this.timestamp = Date.now();
         this.nounce = 1;
         this.hash = this.calcHash();
+        []
     }
 
     calcHash(): string {
@@ -48,6 +55,10 @@ class BlockClass {
         }
         return this.hash
     }
+}
+
+export function passwordGen({hash, privatekey, publickey}: TpasswordGen): string {
+    return sha256(hash + privatekey + publickey)
 }
 
 export default BlockClass;

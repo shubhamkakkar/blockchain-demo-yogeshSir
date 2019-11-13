@@ -1,5 +1,4 @@
 import UserSchema from "../../../models/user/user";
-import {sha256} from "js-sha256";
 import {jwtToken} from "../helperUserFunctions/jwt";
 import {GraphQLError} from "graphql";
 import {User} from "../../../../generated/graphql";
@@ -18,9 +17,9 @@ export default function loginMutation({email, password}: User) {
                     message: password
                 });
                 return verification({
-                    privateKey: privateKey,
+                    privateKey,
                     encrypted: encryptedPassword,
-                    publicKey: publicKey
+                    publicKey
                 }).then((passwordRes: boolean) => {
                     if (passwordRes) {
                         return ({

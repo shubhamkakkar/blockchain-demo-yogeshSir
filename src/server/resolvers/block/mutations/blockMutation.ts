@@ -3,7 +3,7 @@ import {JWTVerify} from "../../user/helperUserFunctions/jwt";
 import UserSchema from "../../../models/user/user";
 import BlockSchema from "../../../models/blocks/block";
 import {stringEncryption} from "../../globalHelperFunctions";
-import BlockClass, {TBlockConstructor} from "../../../../Blockchain/Block";
+import BlockClass, {passwordGen, TBlockConstructor} from "../../../../Blockchain/Block";
 
 interface TBlockConstructorCustom extends TBlockConstructor {
     token: string;
@@ -13,10 +13,6 @@ interface TBlockConstructorCustom extends TBlockConstructor {
 
 
 function createNewBlock({index, data: message, prevHash, token, privatekey, publickey}: TBlockConstructorCustom) {
-    // const signatureOfUserMessage = signature({
-    //     message,
-    //     privatekey
-    // });
 
     const encryptMessage = stringEncryption({publickey, message, privatekey});
     const toAddBlock = new BlockClass({
@@ -24,7 +20,21 @@ function createNewBlock({index, data: message, prevHash, token, privatekey, publ
         data: encryptMessage,
         prevHash,
     });
-    const newBlock = new BlockSchema({...toAddBlock, creatorEmail: token});
+    const {hash} = toAddBlock;
+    const password = () => {
+        const chars = passwordGen({privatekey, publickey, hash}).split("");
+        const punctuation = '!@#$%^&*()_+~`|}{[]\:;?><,./-='.split("");
+        let temp = "";
+
+        while (temp.length < 10) {
+            let index = Math.floor(Math.random() * 7) + Math.floor(Math.random() * 3);
+            temp += chars[index] + punctuation[index]
+        }
+        return temp
+
+    };
+
+    const newBlock = new BlockSchema({...toAddBlock, creatorEmail: token, password: password()});
     return newBlock.save().then(res => res).catch(er => er);
 }
 
@@ -40,9 +50,7 @@ export function blockCreationMutation({data, token, privateKey: givenPrivateKey}
                 if (givenPrivateKey === userOriginalPrivateKey) {
                     return BlockSchema.find()
                         .then(chain => {
-                            const timestamp = Date.now();
-                            const nounce = 1;
-                            if (chain.length === 0) {
+                            if (!chain.length) {
                                 //  genesis block
                                 const index = 0;
                                 const prevHash = '0';
