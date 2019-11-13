@@ -2,7 +2,7 @@ import {MutationCreateBlockArgs} from "../../../../generated/graphql";
 import {JWTVerify} from "../../user/jwt";
 import UserSchema from "../../../models/user/user";
 import BlockSchema from "../../../models/blocks/block";
-import {encrypted, signature} from "../customHelperFunctions";
+import {stringEncryption} from "../../helperFunction";
 import BlockClass, {TBlockConstructor} from "../../../../Blockchain/Block";
 
 interface TBlockConstructorCustom extends TBlockConstructor {
@@ -13,12 +13,12 @@ interface TBlockConstructorCustom extends TBlockConstructor {
 
 
 function createNewBlock({index, data: message, prevHash, token, privatekey, publickey}: TBlockConstructorCustom) {
-    const signatureOfUserMessage = signature({
-        message,
-        privatekey
-    });
+    // const signatureOfUserMessage = signature({
+    //     message,
+    //     privatekey
+    // });
 
-    const encryptMessage = encrypted({publickey, message, signature: signatureOfUserMessage});
+    const encryptMessage = stringEncryption({publickey, message, privatekey});
     const toAddBlock = new BlockClass({
         index,
         data: encryptMessage,
@@ -29,7 +29,7 @@ function createNewBlock({index, data: message, prevHash, token, privatekey, publ
 }
 
 
-export function blockCreationMutation({data, token, privateKey: givenPrivateKey}: MutationCreateBlockArgs){
+export function blockCreationMutation({data, token, privateKey: givenPrivateKey}: MutationCreateBlockArgs) {
     // @ts-ignore
     const {email: {email}} = JWTVerify(token);
     return UserSchema.findOne({email})
