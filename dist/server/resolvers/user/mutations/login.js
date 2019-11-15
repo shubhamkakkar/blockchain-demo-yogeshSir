@@ -20,6 +20,7 @@ function loginMutation({ email, password }) {
                 encrypted: encryptedPassword,
                 publicKey
             }).then((passwordRes) => {
+                console.log({ passwordRes });
                 if (passwordRes) {
                     return {
                         token: jwt_1.jwtToken({ email }),
@@ -33,11 +34,11 @@ function loginMutation({ email, password }) {
             });
         }
         else {
-            console.log("user not found");
+            return new graphql_1.GraphQLError("User not found");
         }
     })
         .catch(er => {
-        console.log("error login in", er);
+        return new graphql_1.GraphQLError("login failed", er);
     });
 }
 exports.default = loginMutation;
