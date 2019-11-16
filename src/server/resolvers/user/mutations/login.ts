@@ -6,23 +6,27 @@ import { stringEncryption, verification } from "../../globalHelperFunctions";
 
 export default function loginMutation({ email, password }: User) {
     return UserSchema.findOne({ email })
-        .then(user => {
+        .then((user: any) => {
             if (user !== null) {
                 // @ts-ignore
-                const { privateKey, publicKey, ...restUserInformation } = user._doc;
+                const { privateKey, publicKey, password: ePassword, ...restUserInformation } = user._doc;
 
-                const encryptedPassword = stringEncryption({
-                    publickey: publicKey,
-                    privatekey: privateKey,
-                    message: password
-                });
+                console.log({ restUserInformation })
+
+                // const encryptedPassword = stringEncryption({
+                //     publickey: publicKey,
+                //     privatekey: privateKey,
+                //     message: password
+                // });
+
                 return verification({
                     privateKey,
-                    encrypted: encryptedPassword,
+                    encrypted: ePassword,
                     publicKey
-                }).then((passwordRes: boolean) => {
+                }).then((passwordRes: string) => {
                     console.log({ passwordRes })
-                    if (passwordRes) {
+                    if (passwordRes === password) {
+                        console.log("pasword maathc")
                         return {
                             token: jwtToken({ email }),
                             ...restUserInformation,
