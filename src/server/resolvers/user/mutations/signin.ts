@@ -3,6 +3,7 @@ import { jwtToken, userProfileKeys } from "../helperUserFunctions/jwt";
 import { User } from "../../../../generated/graphql";
 import { stringEncryption } from "../../globalHelperFunctions";
 import { GraphQLError } from "graphql";
+import loginHandler from "./loginHandler";
 
 export default function signinMutation({ email, password }: User) {
     return UserSchema.findOne({ email })
@@ -36,11 +37,9 @@ export default function signinMutation({ email, password }: User) {
                     })
                     .catch(res => res)
             } else {
-                const { password, ...restUserInformation } = res._doc;
-                return ({
-                    token: jwtToken({ email }),
-                    ...restUserInformation
-                })
+                const { password: encryptedPassword, privateKey, publicKey, ...restUserInformation } = res._doc;
+                return loginHandler({ privateKey, publicKey, email, encryptedPassword, enteredPassword: password, restUserInformation, errorMessage: "User already exists in the database, the entered password didnot match" })
+
             }
         })
         .catch(er => new GraphQLError("signin failed", er))

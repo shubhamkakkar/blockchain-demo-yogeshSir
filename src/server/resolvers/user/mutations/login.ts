@@ -1,41 +1,15 @@
 import UserSchema from "../../../models/user/user";
-import { jwtToken } from "../helperUserFunctions/jwt";
 import { GraphQLError } from "graphql";
 import { User } from "../../../../generated/graphql";
-import { stringEncryption, verification } from "../../globalHelperFunctions";
+import loginHandler from "./loginHandler";
 
 export default function loginMutation({ email, password }: User) {
     return UserSchema.findOne({ email })
         .then((user: any) => {
             if (user !== null) {
                 // @ts-ignore
-                const { privateKey, publicKey, password: ePassword, ...restUserInformation } = user._doc;
-
-                console.log({ restUserInformation })
-
-                // const encryptedPassword = stringEncryption({
-                //     publickey: publicKey,
-                //     privatekey: privateKey,
-                //     message: password
-                // });
-
-                return verification({
-                    privateKey,
-                    encrypted: ePassword,
-                    publicKey
-                }).then((passwordRes: string) => {
-                    console.log({ passwordRes })
-                    if (passwordRes === password) {
-                        console.log("pasword maathc")
-                        return {
-                            token: jwtToken({ email }),
-                            ...restUserInformation,
-                            privateKey, publicKey
-                        }
-                    } else {
-                        return new GraphQLError("Passwords Didnot match")
-                    }
-                });
+                const { privateKey, publicKey, password: encryptedPassword, ...restUserInformation } = user._doc;
+                return loginHandler({ privateKey, publicKey, email, encryptedPassword, enteredPassword: password, restUserInformation, errorMessage: "Password didnot match" })
             } else {
                 return new GraphQLError("User not found")
             }
