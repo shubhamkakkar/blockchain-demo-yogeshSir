@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="159561b2-b662-4489-a2c4-acf893c8f4f2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Blockchain/automatedBlockchain/automatedBlockchain.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Blockchain/automatedBlockchain/automatedBlockchain.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Blockchain/customBlockchain/customBlockChain.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Blockchain/customBlockchain/customBlockChain.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -42,11 +39,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/server/resolvers/user/helperUserFunctions" />
       <recent name="$PROJECT_DIR$/src/server" />
       <recent name="$PROJECT_DIR$/src/schema/users" />
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/server" />
-      <recent name="$PROJECT_DIR$/automatedBlockchain" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -122,7 +119,8 @@
       <workItem from="1570307194199" duration="723000" />
       <workItem from="1570384460837" duration="9987000" />
       <workItem from="1570469549514" duration="13213000" />
-      <workItem from="1570623255931" duration="8109000" />
+      <workItem from="1570623255931" duration="8319000" />
+      <workItem from="1573586076285" duration="28845000" />
     </task>
     <servers />
   </component>
@@ -133,6 +131,31 @@
         <option value="$PROJECT_DIR$/node_modules/apollo-server-env/src/index.d.ts" />
         <option value="$PROJECT_DIR$/node_modules/apollo-env/src/fetch/global.d.ts" />
         <option value="$PROJECT_DIR$/node_modules/apollo-env/src/fetch/index.d.ts" />
+        <option value="$PROJECT_DIR$/node_modules/apollo-server-env/src/index.d.ts" />
+        <option value="$PROJECT_DIR$/node_modules/apollo-env/src/fetch/global.d.ts" />
+        <option value="$PROJECT_DIR$/node_modules/apollo-env/src/fetch/index.d.ts" />
+        <option value="$PROJECT_DIR$/src/server/resolvers/user/queries/users.js" />
+        <option value="$PROJECT_DIR$/src/server/resolvers/user/index.js" />
+        <option value="$PROJECT_DIR$/src/server/resolvers/user/mutations/login.js" />
+        <option value="$PROJECT_DIR$/src/server/resolvers/user/mutations/signin.js" />
+        <option value="$PROJECT_DIR$/src/server/models/user/user.js" />
+        <option value="$PROJECT_DIR$/src/server/resolvers/block/queries/blocks.js" />
+        <option value="$PROJECT_DIR$/src/server/resolvers/block/queries/block.js" />
+        <option value="$PROJECT_DIR$/src/server/resolvers/block/index.js" />
+        <option value="$PROJECT_DIR$/src/server/schema/users/user.js" />
+        <option value="$PROJECT_DIR$/src/server/models/blocks/block.js" />
+        <option value="$PROJECT_DIR$/src/server/resolvers/user/helperUserFunctions/jwt.js" />
+        <option value="$PROJECT_DIR$/src/server/resolvers/block/mutations/blockMutation.js" />
+        <option value="$PROJECT_DIR$/src/Blockchain/Block.js" />
+        <option value="$PROJECT_DIR$/src/server/resolvers/globalHelperFunctions.js" />
+        <option value="$PROJECT_DIR$/src/server/resolvers/index.js" />
+        <option value="$PROJECT_DIR$/src/server/schema/index.js" />
+        <option value="$PROJECT_DIR$/src/index.js" />
+        <option value="$PROJECT_DIR$/src/server/schema/blockchain/blockchain.js" />
+        <option value="$PROJECT_DIR$/src/generated/graphql.js" />
+        <option value="$PROJECT_DIR$/src/Blockchain/customBlockchain/customBlockChain.js" />
+        <option value="$PROJECT_DIR$/src/Blockchain/customBlockchain/createBlockchain.js" />
+        <option value="$PROJECT_DIR$/src/Blockchain/automatedBlockchain/automatedBlockchain.js" />
       </list>
     </option>
   </component>

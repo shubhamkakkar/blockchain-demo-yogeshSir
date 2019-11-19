@@ -8,6 +8,7 @@
             "esnext.asynciterable"
         ],
         "moduleResolution": "node",
+        "baseUrl": "src",
         "outDir": "./dist",
         "strict": true,
         "strictPropertyInitialization": false,
@@ -16,6 +17,6 @@
         "experimentalDecorators": true
     },
     "include": [
-        "./src/**/**"
+        "**/*.ts"
     ]
 }

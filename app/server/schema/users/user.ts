@@ -12,7 +12,7 @@ export default gql`
         email: String!
         password: String!
     }
-
+    
     type ReturnedUser {
         _id: ID!
         email: String!
@@ -21,5 +21,5 @@ export default gql`
         token: String!
     }
 
-  
+
 `;

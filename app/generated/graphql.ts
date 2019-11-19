@@ -21,6 +21,7 @@ export type Block = {
   data: Scalars['String'],
   prevHash: Scalars['String'],
   hash: Scalars['String'],
+  password: Scalars['String'],
 };
 
 export enum CacheControlScope {
@@ -72,7 +73,7 @@ export type QueryBlocksArgs = {
 export type QueryBlockArgs = {
   id: Scalars['ID'],
   token: Scalars['String'],
-  privateKey: Scalars['String']
+  password: Scalars['String']
 };
 
 export type ReturnedUser = {
@@ -207,6 +208,7 @@ export type BlockResolvers<ContextType = any, ParentType extends ResolversParent
   data?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
   prevHash?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
   hash?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
+  password?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
 };
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
@@ -220,7 +222,7 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
   _?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>,
   users?: Resolver<Maybe<Array<ResolversTypes['ReturnedUser']>>, ParentType, ContextType>,
   blocks?: Resolver<Maybe<Array<ResolversTypes['Block']>>, ParentType, ContextType, RequireFields<QueryBlocksArgs, 'token'>>,
-  block?: Resolver<ResolversTypes['Block'], ParentType, ContextType, RequireFields<QueryBlockArgs, 'id' | 'token' | 'privateKey'>>,
+  block?: Resolver<ResolversTypes['Block'], ParentType, ContextType, RequireFields<QueryBlockArgs, 'id' | 'token' | 'password'>>,
 };
 
 export type ReturnedUserResolvers<ContextType = any, ParentType extends ResolversParentTypes['ReturnedUser'] = ResolversParentTypes['ReturnedUser']> = {

@@ -4,7 +4,7 @@ import {gql} from 'apollo-server-express';
 export default gql`
     extend type Query {
         blocks(token: String!): [Block!]
-        block(id: ID!, token: String!, privateKey: String!): Block!
+        block(id: ID!, token: String!, password: String!): Block!
     }
 
     extend type Mutation {
@@ -18,5 +18,6 @@ export default gql`
         data: String!
         prevHash: String!
         hash: String!
+        password:String!
     }
 `;
