@@ -1,7 +1,4 @@
-import * as express from 'express';
 import * as mongoose from "mongoose"
-import * as bodyParser from 'body-parser';
-import * as cors from 'cors';
 // @ts-ignore
 import { config } from "dotenv"
 import { resolve } from "path"
