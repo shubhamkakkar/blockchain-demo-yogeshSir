@@ -45,6 +45,9 @@ export async function verification({
         signature,
         message,
     });
+
+    console.log("verification", verificationBool)
+
     if (verificationBool) {
         return message
     } else {

@@ -1,5 +1,5 @@
-import {Block as TBlock, MutationCreateBlockArgs, QueryBlockArgs, QueryBlocksArgs} from "../../../generated/graphql"
-import {blockCreationMutation} from "./mutations/blockMutation";
+import { Block as TBlock, MutationCreateBlockArgs, QueryBlockArgs, QueryBlocksArgs } from "../../../generated/graphql"
+import { blockCreationMutation } from "./mutations/blockMutation";
 import blockQuery from "./queries/block";
 import blocksQuery from "./queries/blocks";
 
