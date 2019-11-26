@@ -1,9 +1,9 @@
-import {MutationCreateBlockArgs} from "../../../../generated/graphql";
-import {JWTVerify} from "../../user/helperUserFunctions/jwt";
+import { MutationCreateBlockArgs } from "../../../../generated/graphql";
+import { JWTVerify } from "../../user/helperUserFunctions/jwt";
 import UserSchema from "../../../models/user/user";
 import BlockSchema from "../../../models/blocks/block";
-import {stringEncryption} from "../../globalHelperFunctions";
-import BlockClass, {passwordGen, TBlockConstructor} from "../../../../Blockchain/Block";
+import { stringEncryption } from "../../globalHelperFunctions";
+import BlockClass, { passwordGen, TBlockConstructor } from "../../../../Blockchain/Block";
 
 interface TBlockConstructorCustom extends TBlockConstructor {
     token: string;
@@ -12,17 +12,17 @@ interface TBlockConstructorCustom extends TBlockConstructor {
 }
 
 
-function createNewBlock({index, data: message, prevHash, token, privatekey, publickey}: TBlockConstructorCustom) {
+function createNewBlock({ index, data: message, prevHash, token, privatekey, publickey }: TBlockConstructorCustom) {
 
-    const encryptMessage = stringEncryption({publickey, message, privatekey});
+    const encryptMessage = stringEncryption({ publickey, message, privatekey });
     const toAddBlock = new BlockClass({
         index,
         data: encryptMessage,
         prevHash,
     });
-    const {hash} = toAddBlock;
+    const { hash } = toAddBlock;
     const password = () => {
-        const chars = passwordGen({privatekey, publickey, hash}).split("");
+        const chars = passwordGen({ privatekey, publickey, hash }).split("");
         const punctuation = '!@#$%^&*()_+~`|}{[]\:;?><,./-='.split("");
         let temp = "";
 
@@ -33,18 +33,18 @@ function createNewBlock({index, data: message, prevHash, token, privatekey, publ
         return temp
     };
 
-    const newBlock = new BlockSchema({...toAddBlock, creatorEmail: token, password: password()});
+    const newBlock = new BlockSchema({ ...toAddBlock, creatorEmail: token, password: password() });
     return newBlock.save().then(res => res).catch(er => er);
 }
 
-export function blockCreationMutation({data, token, privateKey: givenPrivateKey}: MutationCreateBlockArgs) {
+export function blockCreationMutation({ data, token, privateKey: givenPrivateKey }: MutationCreateBlockArgs) {
     // @ts-ignore
-    const {email: {email}} = JWTVerify(token);
-    return UserSchema.findOne({email})
+    const { email: { email } } = JWTVerify(token);
+    return UserSchema.findOne({ email })
         .then(user => {
             if (user) {
                 // @ts-ignore
-                const {privateKey: userOriginalPrivateKey, publicKey}: { privateKey: string, publicKey: string } = user;
+                const { privateKey: userOriginalPrivateKey, publicKey }: { privateKey: string, publicKey: string } = user;
                 if (givenPrivateKey === userOriginalPrivateKey) {
                     return BlockSchema.find()
                         .then(chain => {
@@ -62,7 +62,7 @@ export function blockCreationMutation({data, token, privateKey: givenPrivateKey}
                                 })
                             } else {
                                 // @ts-ignore
-                                const {index: lastIndex, hash: prevHash}: { index: number, hash: string } = chain.reverse()[0]._doc;
+                                const { index: lastIndex, hash: prevHash }: { index: number, hash: string } = chain.reverse()[0]._doc;
                                 const index = lastIndex + 1;
                                 return createNewBlock({
                                     index,

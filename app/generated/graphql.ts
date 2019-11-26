@@ -15,13 +15,7 @@ export type Scalars = {
 
 export type Block = {
    __typename?: 'Block',
-  _id: Scalars['ID'],
-  index: Scalars['Int'],
-  timestamp: Scalars['String'],
   data: Scalars['String'],
-  prevHash: Scalars['String'],
-  hash: Scalars['String'],
-  password: Scalars['String'],
 };
 
 export enum CacheControlScope {
@@ -34,7 +28,7 @@ export type Mutation = {
   _?: Maybe<Scalars['Boolean']>,
   signin?: Maybe<ReturnedUser>,
   login?: Maybe<ReturnedUser>,
-  createBlock: Block,
+  createBlock: TrueBlock,
 };
 
 
@@ -56,11 +50,21 @@ export type MutationCreateBlockArgs = {
   privateKey: Scalars['String']
 };
 
+export type PublicLedger = {
+   __typename?: 'PublicLedger',
+  _id: Scalars['ID'],
+  index: Scalars['Int'],
+  timestamp: Scalars['String'],
+  prevHash: Scalars['String'],
+  hash: Scalars['String'],
+  password: Scalars['String'],
+};
+
 export type Query = {
    __typename?: 'Query',
   _?: Maybe<Scalars['Boolean']>,
   users?: Maybe<Array<ReturnedUser>>,
-  blocks?: Maybe<Array<Block>>,
+  blocks?: Maybe<Array<PublicLedger>>,
   block: Block,
 };
 
@@ -88,6 +92,17 @@ export type ReturnedUser = {
 export type Subscription = {
    __typename?: 'Subscription',
   _?: Maybe<Scalars['Boolean']>,
+};
+
+export type TrueBlock = {
+   __typename?: 'TrueBlock',
+  _id: Scalars['ID'],
+  index: Scalars['Int'],
+  timestamp: Scalars['String'],
+  prevHash: Scalars['String'],
+  hash: Scalars['String'],
+  data: Scalars['String'],
+  password: Scalars['String'],
 };
 
 
@@ -173,9 +188,11 @@ export type ResolversTypes = {
   ReturnedUser: ResolverTypeWrapper<ReturnedUser>,
   ID: ResolverTypeWrapper<Scalars['ID']>,
   String: ResolverTypeWrapper<Scalars['String']>,
-  Block: ResolverTypeWrapper<Block>,
+  PublicLedger: ResolverTypeWrapper<PublicLedger>,
   Int: ResolverTypeWrapper<Scalars['Int']>,
+  Block: ResolverTypeWrapper<Block>,
   Mutation: ResolverTypeWrapper<{}>,
+  TrueBlock: ResolverTypeWrapper<TrueBlock>,
   Subscription: ResolverTypeWrapper<{}>,
   CacheControlScope: CacheControlScope,
   Upload: ResolverTypeWrapper<Scalars['Upload']>,
@@ -189,9 +206,11 @@ export type ResolversParentTypes = {
   ReturnedUser: ReturnedUser,
   ID: Scalars['ID'],
   String: Scalars['String'],
-  Block: Block,
+  PublicLedger: PublicLedger,
   Int: Scalars['Int'],
+  Block: Block,
   Mutation: {},
+  TrueBlock: TrueBlock,
   Subscription: {},
   CacheControlScope: CacheControlScope,
   Upload: Scalars['Upload'],
@@ -202,26 +221,29 @@ export type CacheControlDirectiveResolver<Result, Parent, ContextType = any, Arg
   scope?: Maybe<Maybe<CacheControlScope>> }> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
 export type BlockResolvers<ContextType = any, ParentType extends ResolversParentTypes['Block'] = ResolversParentTypes['Block']> = {
-  _id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>,
-  index?: Resolver<ResolversTypes['Int'], ParentType, ContextType>,
-  timestamp?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
   data?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
-  prevHash?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
-  hash?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
-  password?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
 };
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   _?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>,
   signin?: Resolver<Maybe<ResolversTypes['ReturnedUser']>, ParentType, ContextType, RequireFields<MutationSigninArgs, 'email' | 'password'>>,
   login?: Resolver<Maybe<ResolversTypes['ReturnedUser']>, ParentType, ContextType, RequireFields<MutationLoginArgs, 'email' | 'password'>>,
-  createBlock?: Resolver<ResolversTypes['Block'], ParentType, ContextType, RequireFields<MutationCreateBlockArgs, 'data' | 'token' | 'privateKey'>>,
+  createBlock?: Resolver<ResolversTypes['TrueBlock'], ParentType, ContextType, RequireFields<MutationCreateBlockArgs, 'data' | 'token' | 'privateKey'>>,
+};
+
+export type PublicLedgerResolvers<ContextType = any, ParentType extends ResolversParentTypes['PublicLedger'] = ResolversParentTypes['PublicLedger']> = {
+  _id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>,
+  index?: Resolver<ResolversTypes['Int'], ParentType, ContextType>,
+  timestamp?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
+  prevHash?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
+  hash?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
+  password?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   _?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>,
   users?: Resolver<Maybe<Array<ResolversTypes['ReturnedUser']>>, ParentType, ContextType>,
-  blocks?: Resolver<Maybe<Array<ResolversTypes['Block']>>, ParentType, ContextType, RequireFields<QueryBlocksArgs, 'token'>>,
+  blocks?: Resolver<Maybe<Array<ResolversTypes['PublicLedger']>>, ParentType, ContextType, RequireFields<QueryBlocksArgs, 'token'>>,
   block?: Resolver<ResolversTypes['Block'], ParentType, ContextType, RequireFields<QueryBlockArgs, 'id' | 'token' | 'password'>>,
 };
 
@@ -237,6 +259,16 @@ export type SubscriptionResolvers<ContextType = any, ParentType extends Resolver
   _?: SubscriptionResolver<Maybe<ResolversTypes['Boolean']>, "_", ParentType, ContextType>,
 };
 
+export type TrueBlockResolvers<ContextType = any, ParentType extends ResolversParentTypes['TrueBlock'] = ResolversParentTypes['TrueBlock']> = {
+  _id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>,
+  index?: Resolver<ResolversTypes['Int'], ParentType, ContextType>,
+  timestamp?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
+  prevHash?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
+  hash?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
+  data?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
+  password?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
+};
+
 export interface UploadScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Upload'], any> {
   name: 'Upload'
 }
@@ -249,9 +281,11 @@ export type UserResolvers<ContextType = any, ParentType extends ResolversParentT
 export type Resolvers<ContextType = any> = {
   Block?: BlockResolvers<ContextType>,
   Mutation?: MutationResolvers<ContextType>,
+  PublicLedger?: PublicLedgerResolvers<ContextType>,
   Query?: QueryResolvers<ContextType>,
   ReturnedUser?: ReturnedUserResolvers<ContextType>,
   Subscription?: SubscriptionResolvers<ContextType>,
+  TrueBlock?: TrueBlockResolvers<ContextType>,
   Upload?: GraphQLScalarType,
   User?: UserResolvers<ContextType>,
 };
