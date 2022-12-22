@@ -39,7 +39,7 @@
     "hybrid-crypto-js": "^0.2.2",
     "inquirer": "^7.0.0",
     "js-sha256": "^0.9.0",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "mongoose": "^5.7.11",
     "nodemon": "^1.19.3",
     "ts-node": "^8.4.1"
